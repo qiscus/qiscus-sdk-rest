@@ -26,9 +26,9 @@ response:
 ```
 {
   "results": {
-    "creator": "asasmoyo@outlook.com",
+    "creator": "abc@outlook.com",
     "participants": [
-      "asasmoyo@outlook.com",
+      "abc@outlook.com",
       "kotak@outlook.com"
     ],
     "room_id": 16,
@@ -64,16 +64,11 @@ response:
       {
         "comment_before_id": 124973,
         "disable_link_preview": false,
-        "email": "asasmoyo@outlook.com",
+        "email": "abc@outlook.com",
         "id": 124974,
         "message": "testingasdad asdas dasd",
         "timestamp": "2017-02-07T19:01:00Z",
         "unique_temp_id": "pyRIKY4reRXlU4Sp6r97",
-        "user_avatar": {
-          "avatar": {
-            "url": "https://res.cloudinary.com/drbmkdgd2/image/fetch/http://res.cloudinary.com/qiscus/image/upload/v1486117460/kiwari-prod_user_id_95/vqgq5pwx1y3mafxsezmb.jpg"
-          }
-        },
         "user_avatar_url": "https://res.cloudinary.com/drbmkdgd2/image/fetch/http://res.cloudinary.com/qiscus/image/upload/v1486117460/kiwari-prod_user_id_95/vqgq5pwx1y3mafxsezmb.jpg",
         "username": "asasmoyo"
       },
@@ -85,11 +80,6 @@ response:
         "message": "testingasdad asdas dasd",
         "timestamp": "2017-02-07T19:00:58Z",
         "unique_temp_id": "K5E6HmKQJQwSovEkFhHf",
-        "user_avatar": {
-          "avatar": {
-            "url": "https://res.cloudinary.com/drbmkdgd2/image/fetch/http://res.cloudinary.com/qiscus/image/upload/v1486117460/kiwari-prod_user_id_95/vqgq5pwx1y3mafxsezmb.jpg"
-          }
-        },
         "user_avatar_url": "https://res.cloudinary.com/drbmkdgd2/image/fetch/http://res.cloudinary.com/qiscus/image/upload/v1486117460/kiwari-prod_user_id_95/vqgq5pwx1y3mafxsezmb.jpg",
         "username": "asasmoyo"
       }
@@ -114,7 +104,7 @@ response:
           "username": "kotak"
         }
       ],
-      "room_name": "asasmoyo@outlook.com kotak@outlook.com"
+      "room_name": "abc@outlook.com kotak@outlook.com"
     }
   },
   "status": 200
@@ -148,7 +138,7 @@ response:
         "last_comment_message": "",
         "last_comment_timestamp": "0001-01-01T00:00:00Z",
         "room_id": 13,
-        "room_name": "asasmoyo@outlook.com kotak1@outlook.com",
+        "room_name": "abc@outlook.com kotak1@outlook.com",
         "room_type": "single",
         "unread_count": 123
       },
@@ -157,7 +147,7 @@ response:
         "last_comment_message": "",
         "last_comment_timestamp": "0001-01-01T00:00:00Z",
         "room_id": 14,
-        "room_name": "asasmoyo@outlook.com kotak2@outlook.com",
+        "room_name": "abc@outlook.com kotak2@outlook.com",
         "room_type": "single",
         "unread_count": 123
       }
@@ -187,10 +177,10 @@ response:
 ```
 {
   "results": {
-    "creator": "asasmoyo@outlook.com",
+    "creator": "abc@outlook.com",
     # updated participants
     "participants": [
-      "asasmoyo@outlook.com",
+      "abc@outlook.com",
       "kotak@outlook.com"
     ],
     "room_id": 16,
@@ -221,10 +211,10 @@ response:
 ```
 {
   "results": {
-    "creator": "asasmoyo@outlook.com",
+    "creator": "abc@outlook.com",
     # updated participants
     "participants": [
-      "asasmoyo@outlook.com",
+      "abc@outlook.com",
       "kotak@outlook.com"
     ],
     "room_id": 16,
@@ -264,11 +254,6 @@ response:
             "disable_link_preview": false,
             "email": "f1@gmail.com",
             "username": "f1",
-            "user_avatar": {
-                "avatar": {
-                    "url": "http://imagebucket.com/image.jpg"
-                }
-            },
             "user_avatar_url": "http://imagebucket.com/image.jpg",
             "timestamp": "2016-09-06T16:18:50+00:00",
             "unique_temp_id": "CanBeAnything1234321"
@@ -309,11 +294,6 @@ response:
         "room_name": "asasmoyo@outlook.com kotak@outlook.com",
         "timestamp": "2017-02-07T19:01:00Z",
         "unique_temp_id": "pyRIKY4reRXlU4Sp6r97",
-        "user_avatar": {
-          "avatar": {
-            "url": "https://res.cloudinary.com/drbmkdgd2/image/fetch/http://res.cloudinary.com/qiscus/image/upload/v1486117460/kiwari-prod_user_id_95/vqgq5pwx1y3mafxsezmb.jpg"
-          }
-        },
         "user_avatar_url": "https://res.cloudinary.com/drbmkdgd2/image/fetch/http://res.cloudinary.com/qiscus/image/upload/v1486117460/kiwari-prod_user_id_95/vqgq5pwx1y3mafxsezmb.jpg",
         "username": "asasmoyo"
       },
@@ -327,11 +307,6 @@ response:
         "room_name": "asasmoyo@outlook.com kotak@outlook.com",
         "timestamp": "2017-02-07T19:00:58Z",
         "unique_temp_id": "K5E6HmKQJQwSovEkFhHf",
-        "user_avatar": {
-          "avatar": {
-            "url": "https://res.cloudinary.com/drbmkdgd2/image/fetch/http://res.cloudinary.com/qiscus/image/upload/v1486117460/kiwari-prod_user_id_95/vqgq5pwx1y3mafxsezmb.jpg"
-          }
-        },
         "user_avatar_url": "https://res.cloudinary.com/drbmkdgd2/image/fetch/http://res.cloudinary.com/qiscus/image/upload/v1486117460/kiwari-prod_user_id_95/vqgq5pwx1y3mafxsezmb.jpg",
         "username": "asasmoyo"
       },
@@ -345,11 +320,6 @@ response:
         "room_name": "asasmoyo@outlook.com kotak@outlook.com",
         "timestamp": "2017-02-07T19:00:56Z",
         "unique_temp_id": "7zUSjzNsCJvglZdxRnGT",
-        "user_avatar": {
-          "avatar": {
-            "url": "https://res.cloudinary.com/drbmkdgd2/image/fetch/http://res.cloudinary.com/qiscus/image/upload/v1486117460/kiwari-prod_user_id_95/vqgq5pwx1y3mafxsezmb.jpg"
-          }
-        },
         "user_avatar_url": "https://res.cloudinary.com/drbmkdgd2/image/fetch/http://res.cloudinary.com/qiscus/image/upload/v1486117460/kiwari-prod_user_id_95/vqgq5pwx1y3mafxsezmb.jpg",
         "username": "asasmoyo"
       }
@@ -387,11 +357,6 @@ response :
             "id": 1,
             "email": "email@qiscus.com",
             "username": "Johnny Cage",
-            "avatar": {
-                "avatar": {
-                    "url": "http://imagebucket.com/image.jpg"
-                }
-            },
             "avatar_url": "https://myimagebucket.com/image.jpg",
             "token": "abcde1234defgh",
             "rtKey": "RT_KEY_HERE",
