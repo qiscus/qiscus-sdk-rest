@@ -1,10 +1,10 @@
 # REST API
 
-## 1. Authentication
+## Authentication
 
 Please add `QISCUS_SDK_SECRET`  header
 
-## 2. Create room
+## Create room
 
 verb:
 
@@ -39,7 +39,7 @@ response:
 }
 ```
 
-## 3. Get or create room with target
+## Get or create room with target
 
 verb:
 
@@ -121,7 +121,7 @@ response:
 }
 ```
 
-## 4. Get rooms info
+## Get rooms info
 
 verb:
 
@@ -167,7 +167,7 @@ response:
 }
 ```
 
-## 5. Add room participants
+## Add room participants
 
 verb:
 
@@ -201,7 +201,7 @@ response:
 }
 ```
 
-## 6. Remove room participants
+## Remove room participants
 
 verb:
 
@@ -235,7 +235,7 @@ response:
 }
 ```
 
-## 7. Post comment 
+## Post comment 
 
 verb:
 
@@ -277,7 +277,7 @@ response:
 }
 ```
 
-## 8. Load comments
+## Load comments
 
 verb:
 
@@ -359,7 +359,7 @@ response:
 }
 ```
 
-## 9. Login or Register
+## Login or Register
 
 verb :
 
