@@ -1,4 +1,4 @@
-# QISCUS SDK REST API (EXTERNAL)
+# REST API
 
 ## 1. Authentication
 
