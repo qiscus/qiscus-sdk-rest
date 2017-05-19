@@ -363,17 +363,17 @@ response:
 
 verb :
 
-`**POST **/api/v2/rest/login_or_register`
+`POST /api/v2/rest/login_or_register`
 
 request :
 
 ```
-**email** [string]
-**password** [string password, optional] # if password is provided and user exists, the user's password will be updated
-**username** [string]
-**avatar_url** [string url, optional]
-**device_token** [string, optional]
-**device_platform** ["ios" or "android", optional]
+email [string]
+password [string password, optional] # if password is provided and user exists, the user's password will be updated
+username [string]
+avatar_url [string url, optional]
+device_token [string, optional]
+device_platform ["ios" or "android", optional]
 ```
 
 
