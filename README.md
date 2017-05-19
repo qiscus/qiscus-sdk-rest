@@ -2,7 +2,7 @@
 
 ## Authentication
 
-Please add `QISCUS_SDK_SECRET`  header
+Add `QISCUS_SDK_SECRET` on every header's request, you can get the value from dashboard.qiscus.com
 
 ## Create room
 
@@ -70,18 +70,18 @@ response:
         "timestamp": "2017-02-07T19:01:00Z",
         "unique_temp_id": "pyRIKY4reRXlU4Sp6r97",
         "user_avatar_url": "https://res.cloudinary.com/drbmkdgd2/image/fetch/http://res.cloudinary.com/qiscus/image/upload/v1486117460/kiwari-prod_user_id_95/vqgq5pwx1y3mafxsezmb.jpg",
-        "username": "asasmoyo"
+        "username": "abc"
       },
       {
         "comment_before_id": 124972,
         "disable_link_preview": false,
-        "email": "asasmoyo@outlook.com",
+        "email": "abc@outlook.com",
         "id": 124973,
         "message": "testingasdad asdas dasd",
         "timestamp": "2017-02-07T19:00:58Z",
         "unique_temp_id": "K5E6HmKQJQwSovEkFhHf",
         "user_avatar_url": "https://res.cloudinary.com/drbmkdgd2/image/fetch/http://res.cloudinary.com/qiscus/image/upload/v1486117460/kiwari-prod_user_id_95/vqgq5pwx1y3mafxsezmb.jpg",
-        "username": "asasmoyo"
+        "username": "abc"
       }
     ],
     "room": {
@@ -95,8 +95,8 @@ response:
       "participants": [
         {
           "avatar_url": "https://res.cloudinary.com/drbmkdgd2/image/fetch/http://res.cloudinary.com/qiscus/image/upload/v1486117460/kiwari-prod_user_id_95/vqgq5pwx1y3mafxsezmb.jpg",
-          "email": "asasmoyo@outlook.com",
-          "username": "asasmoyo"
+          "email": "abc@outlook.com",
+          "username": "abc"
         },
         {
           "avatar_url": "https://qiscuss3.s3.amazonaws.com/uploads/55c0c6ee486be6b686d52e5b9bbedbbf/2.png",
@@ -287,41 +287,28 @@ response:
       {
         "comment_before_id": 124973,
         "disable_link_preview": false,
-        "email": "asasmoyo@outlook.com",
+        "email": "abc@outlook.com",
         "id": 124974,
         "message": "testingasdad asdas dasd",
         "room_id": 234,
-        "room_name": "asasmoyo@outlook.com kotak@outlook.com",
+        "room_name": "abc@outlook.com kotak@outlook.com",
         "timestamp": "2017-02-07T19:01:00Z",
         "unique_temp_id": "pyRIKY4reRXlU4Sp6r97",
         "user_avatar_url": "https://res.cloudinary.com/drbmkdgd2/image/fetch/http://res.cloudinary.com/qiscus/image/upload/v1486117460/kiwari-prod_user_id_95/vqgq5pwx1y3mafxsezmb.jpg",
-        "username": "asasmoyo"
+        "username": "abc"
       },
       {
         "comment_before_id": 124972,
         "disable_link_preview": false,
-        "email": "asasmoyo@outlook.com",
+        "email": "abc@outlook.com",
         "id": 124973,
         "message": "testingasdad asdas dasd",
         "room_id": 234,
-        "room_name": "asasmoyo@outlook.com kotak@outlook.com",
+        "room_name": "abc@outlook.com kotak@outlook.com",
         "timestamp": "2017-02-07T19:00:58Z",
         "unique_temp_id": "K5E6HmKQJQwSovEkFhHf",
         "user_avatar_url": "https://res.cloudinary.com/drbmkdgd2/image/fetch/http://res.cloudinary.com/qiscus/image/upload/v1486117460/kiwari-prod_user_id_95/vqgq5pwx1y3mafxsezmb.jpg",
-        "username": "asasmoyo"
-      },
-      {
-        "comment_before_id": 124971,
-        "disable_link_preview": false,
-        "email": "asasmoyo@outlook.com",
-        "id": 124972,
-        "message": "testingasdad asdas dasd",
-        "room_id": 234,
-        "room_name": "asasmoyo@outlook.com kotak@outlook.com",
-        "timestamp": "2017-02-07T19:00:56Z",
-        "unique_temp_id": "7zUSjzNsCJvglZdxRnGT",
-        "user_avatar_url": "https://res.cloudinary.com/drbmkdgd2/image/fetch/http://res.cloudinary.com/qiscus/image/upload/v1486117460/kiwari-prod_user_id_95/vqgq5pwx1y3mafxsezmb.jpg",
-        "username": "asasmoyo"
+        "username": "abc"
       }
     ]
   },
@@ -339,7 +326,7 @@ request :
 
 ```
 email [string]
-password [string password, optional] # if password is provided and user exists, the user's password will be updated
+password [string password, optional] # password will be updated if user already exist
 username [string]
 avatar_url [string url, optional]
 device_token [string, optional]
@@ -358,10 +345,7 @@ response :
             "email": "email@qiscus.com",
             "username": "Johnny Cage",
             "avatar_url": "https://myimagebucket.com/image.jpg",
-            "token": "abcde1234defgh",
-            "rtKey": "RT_KEY_HERE",
-            "pn_ios_configured": true,
-            "pn_android_configured": true
+            "token": "abcde1234defgh"
         },
     }
 }
