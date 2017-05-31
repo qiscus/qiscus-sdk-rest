@@ -1,5 +1,9 @@
 # REST API
 
+BASE_URL : [APP_ID].qiscus.com
+
+example : if your APP_ID is `domino-prod` means the base_url will be `domino-prod.qiscus.com`
+
 ## Authentication
 
 Add `QISCUS_SDK_SECRET` on every header's request, you can get the value from dashboard.qiscus.com
@@ -289,7 +293,7 @@ response:
         "disable_link_preview": false,
         "email": "abc@outlook.com",
         "id": 124974,
-        "message": "testingasdad asdas dasd",
+        "message": "testing",
         "room_id": 234,
         "room_name": "abc@outlook.com kotak@outlook.com",
         "timestamp": "2017-02-07T19:01:00Z",
@@ -302,7 +306,7 @@ response:
         "disable_link_preview": false,
         "email": "abc@outlook.com",
         "id": 124973,
-        "message": "testingasdad asdas dasd",
+        "message": "here is the message that I sent",
         "room_id": 234,
         "room_name": "abc@outlook.com kotak@outlook.com",
         "timestamp": "2017-02-07T19:00:58Z",
