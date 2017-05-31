@@ -6,7 +6,7 @@ example : if your APP_ID is `domino-prod` means the base_url will be `domino-pro
 
 ## Authentication
 
-Add `QISCUS_SDK_SECRET` on every header's request, you can get the value from dashboard.qiscus.com
+Add `secret key` on every header's request, you can get the value from dashboard.qiscus.com
 
 ## Create room
 
