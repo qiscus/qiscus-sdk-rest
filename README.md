@@ -355,7 +355,51 @@ response :
 }
 ```
 
+# Webhook
 
+Webhooks make it super easy to build on top of Qiscus SDK. They are user-defined callbacks. They are triggered by events -- in this case, messages from customers and businesses. When the event occurs, the webhook will make a call to the URI it’s configured to.
+
+## post comment
+
+```
+{
+    "type": "post_comment",
+    "payload": {
+        "from": {
+            "id": 1,
+            "email": "user1@gmail.com",
+            "name": "User1",
+        },
+        "room": {
+            "id": 1,
+            "topic_id": 1,
+            "type": "group", # can also be single
+            "name": "ini grup",
+            "participants": [
+                {
+                    "id": 1,
+                    "email": "user1@gmail.com",
+                    "username": "User1",
+                    "avatar_url": "http://avatar1.jpg"
+                },
+                {
+                    "id": 2,
+                    "email": "user2@gmail.com",
+                    "username": "User2",
+                    "avatar_url": "http://avatar2.jpg"
+                }
+            ]
+        },
+        "message": {
+            "type": "text",
+            "text": "ini pesan",
+            "payload": {
+                # comment type specific payload
+            }
+        }
+    }
+}
+```
 
 
 
