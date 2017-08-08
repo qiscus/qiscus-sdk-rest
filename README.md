@@ -8,6 +8,185 @@ example : if your APP_ID is `domino-prod` means the base_url will be `domino-pro
 
 Add `SECRET KEY` on every header's request, you can get the value from www.qiscus.com/dashboard
 
+## Login or Register
+
+verb :
+
+`POST /api/v2/rest/login_or_register`
+
+request :
+
+```
+email [string]
+password [string password, optional] # password will be updated if user already exist
+username [string]
+avatar_url [string url, optional]
+device_token [string, optional]
+device_platform ["ios" or "android", optional]
+```
+
+
+response :
+
+```
+{
+    "status": 200,
+    "results": {
+        "user": {
+            "id": 1,
+            "email": "email@qiscus.com",
+            "username": "Johnny Cage",
+            "avatar_url": "https://myimagebucket.com/image.jpg",
+            "token": "abcde1234defgh"
+        },
+    }
+}
+```
+
+
+## Reset User Authentication Token
+
+In case your user token is compromised, you can reset their token at any time. This make previous token no longer valid.
+
+verb:
+
+`POST /api/v2/rest/reset_user_token`
+
+request:
+
+```
+user_email [string] user email to reset
+```
+
+response:
+
+```
+{
+    "results": {
+        "user": {
+            "avatar": {
+                "url": "https://res.cloudinary.com/qiscus/image/upload/v1492579000/kiwari-prod_user_id_108/m9lvv1ykfrgw3lte0ojb.jpg"
+            },
+            "avatar_url": "https://res.cloudinary.com/qiscus/image/upload/v1492579000/kiwari-prod_user_id_108/m9lvv1ykfrgw3lte0ojb.jpg",
+            "email": "userid_108_6285868231412@kiwari-prod.com",
+            "id": 144,
+            "last_comment_id": 443376,
+            "pn_android_configured": true,
+            "pn_ios_configured": true,
+            "rtKey": "somestring",
+            "token": "kj2oLfL9CwzKZXxkHfHE",
+            "username": "Yusuf"
+        }
+    },
+    "status": 200
+}
+```
+
+## Get User Room List
+
+Will show maximum 20 data per page. Verb:
+
+
+`GET /api/v2/rest/get_user_rooms`
+
+request:
+
+```
+user_email [string] required
+page [int] number of page, optional
+show_participants [bool] "true" or "false" 
+```
+
+
+response when **show_participants** is false:
+
+```
+{
+    "results": {
+        "meta": {
+            "current_page": 1,
+            "total_room": 39
+        },
+        "rooms_info": [
+            {
+                "last_comment_id": 443375,
+                "last_comment_message": "Yusuf added Heru S",
+                "last_comment_timestamp": "2017-08-04T15:45:07Z",
+                "room_avatar_url": "",
+                "room_id": 1339,
+                "room_name": "Heru S",
+                "room_type": "single",
+                "unread_count": 19
+            },
+            {
+                "last_comment_id": 430237,
+                "last_comment_message": "Haha",
+                "last_comment_timestamp": "2017-07-14T09:19:40Z",
+                "room_avatar_url": "https://res.cloudinary.com/qiscus/image/upload/v1493780549/group_avatar_kiwari-prod_user_id_74/chbflw5rqfdlj0orsfzj.jpg",
+                "room_id": 1325,
+                "room_name": "qiscus AI",
+                "room_type": "group",
+                "unread_count": 56
+            }
+        ]
+    },
+    "status": 200
+}
+```
+
+response when **show_participants** is true:
+
+```
+{
+    "results": {
+        "meta": {
+            "current_page": 1,
+            "total_room": 39
+        },
+        "rooms_info": [
+            {
+                "last_comment_id": 443376,
+                "last_comment_message": "halo",
+                "last_comment_timestamp": "2017-08-07T11:10:59Z",
+                "participants": [
+                    {
+                        "avatar_url": "https://res.cloudinary.com/qiscus/image/upload/v1492579000/kiwari-prod_user_id_108/m9lvv1ykfrgw3lte0ojb.jpg",
+                        "email": "userid_108_6285868231412@kiwari-prod.com",
+                        "id": 144,
+                        "last_comment_read_id": 443376,
+                        "last_comment_received_id": 426622,
+                        "username": "Yusuf"
+                    },
+                    {
+                        "avatar_url": "https://res.cloudinary.com/qiscus/image/upload/v1486119595/kiwari-prod_user_id_72/tcqbyg6adc6e9mymb9nr.jpg",
+                        "email": "userid_72_6281226612018@kiwari.com",
+                        "id": 101,
+                        "last_comment_read_id": 428889,
+                        "last_comment_received_id": 426622,
+                        "username": "Delta"
+                    },
+                    {
+                        "avatar_url": "https://res.cloudinary.com/qiscus/image/upload/v1490343786/kiwari-prod_user_id_201/sa6r61reovri6dtrajly.jpg",
+                        "email": "userid_201_6285877700050@kiwari-prod.com",
+                        "id": 326,
+                        "last_comment_read_id": 425609,
+                        "last_comment_received_id": 411931,
+                        "username": "A. Athaullah"
+                    }
+                ],
+                "room_avatar_url": "https://res.cloudinary.com/qiscus/image/upload/v1493173118/group_avatar_kiwari-prod_user_id_93/c7tankz1i4yi6620btby.jpg",
+                "room_id": 1275,
+                "room_name": "Qiscus SDK clients",
+                "room_type": "group",
+                "unread_count": 0
+            }
+        ]
+    },
+    "status": 200
+}
+```
+
+
 ## Create room
 
 verb:
@@ -674,40 +853,6 @@ response:
 }
 ```
 
-## Login or Register
-
-verb :
-
-`POST /api/v2/rest/login_or_register`
-
-request :
-
-```
-email [string]
-password [string password, optional] # password will be updated if user already exist
-username [string]
-avatar_url [string url, optional]
-device_token [string, optional]
-device_platform ["ios" or "android", optional]
-```
-
-
-response :
-
-```
-{
-    "status": 200,
-    "results": {
-        "user": {
-            "id": 1,
-            "email": "email@qiscus.com",
-            "username": "Johnny Cage",
-            "avatar_url": "https://myimagebucket.com/image.jpg",
-            "token": "abcde1234defgh"
-        },
-    }
-}
-```
 
 
 ## Post System Event Message
@@ -1110,148 +1255,6 @@ response:
                 "status": "finished",
                 "total_rows": 1,
                 "unique_id": "85cfa162-f8ac-4e91-a6a4-a2e4ab25e150"
-            }
-        ]
-    },
-    "status": 200
-}
-```
-
-## Reset User Authentication Token
-
-In case your user token is compromised, you can reset their token at any time. This make previous token no longer valid.
-
-verb:
-
-`POST /api/v2/rest/reset_user_token`
-
-request:
-
-```
-user_email [string] user email to reset
-```
-
-response:
-
-```
-{
-    "results": {
-        "user": {
-            "avatar": {
-                "url": "https://res.cloudinary.com/qiscus/image/upload/v1492579000/kiwari-prod_user_id_108/m9lvv1ykfrgw3lte0ojb.jpg"
-            },
-            "avatar_url": "https://res.cloudinary.com/qiscus/image/upload/v1492579000/kiwari-prod_user_id_108/m9lvv1ykfrgw3lte0ojb.jpg",
-            "email": "userid_108_6285868231412@kiwari-prod.com",
-            "id": 144,
-            "last_comment_id": 443376,
-            "pn_android_configured": true,
-            "pn_ios_configured": true,
-            "rtKey": "somestring",
-            "token": "kj2oLfL9CwzKZXxkHfHE",
-            "username": "Yusuf"
-        }
-    },
-    "status": 200
-}
-```
-
-## Get User Room List
-
-Will show maximum 20 data per page. Verb:
-
-
-`GET /api/v2/rest/get_user_rooms`
-
-request:
-
-```
-user_email [string] required
-page [int] number of page, optional
-show_participants [bool] "true" or "false" 
-```
-
-
-response when **show_participants** is false:
-
-```
-{
-    "results": {
-        "meta": {
-            "current_page": 1,
-            "total_room": 39
-        },
-        "rooms_info": [
-            {
-                "last_comment_id": 443375,
-                "last_comment_message": "Yusuf added Heru S",
-                "last_comment_timestamp": "2017-08-04T15:45:07Z",
-                "room_avatar_url": "",
-                "room_id": 1339,
-                "room_name": "Heru S",
-                "room_type": "single",
-                "unread_count": 19
-            },
-            {
-                "last_comment_id": 430237,
-                "last_comment_message": "Haha",
-                "last_comment_timestamp": "2017-07-14T09:19:40Z",
-                "room_avatar_url": "https://res.cloudinary.com/qiscus/image/upload/v1493780549/group_avatar_kiwari-prod_user_id_74/chbflw5rqfdlj0orsfzj.jpg",
-                "room_id": 1325,
-                "room_name": "qiscus AI",
-                "room_type": "group",
-                "unread_count": 56
-            }
-        ]
-    },
-    "status": 200
-}
-```
-
-response when **show_participants** is true:
-
-```
-{
-    "results": {
-        "meta": {
-            "current_page": 1,
-            "total_room": 39
-        },
-        "rooms_info": [
-            {
-                "last_comment_id": 443376,
-                "last_comment_message": "halo",
-                "last_comment_timestamp": "2017-08-07T11:10:59Z",
-                "participants": [
-                    {
-                        "avatar_url": "https://res.cloudinary.com/qiscus/image/upload/v1492579000/kiwari-prod_user_id_108/m9lvv1ykfrgw3lte0ojb.jpg",
-                        "email": "userid_108_6285868231412@kiwari-prod.com",
-                        "id": 144,
-                        "last_comment_read_id": 443376,
-                        "last_comment_received_id": 426622,
-                        "username": "Yusuf"
-                    },
-                    {
-                        "avatar_url": "https://res.cloudinary.com/qiscus/image/upload/v1486119595/kiwari-prod_user_id_72/tcqbyg6adc6e9mymb9nr.jpg",
-                        "email": "userid_72_6281226612018@kiwari.com",
-                        "id": 101,
-                        "last_comment_read_id": 428889,
-                        "last_comment_received_id": 426622,
-                        "username": "Delta"
-                    },
-                    {
-                        "avatar_url": "https://res.cloudinary.com/qiscus/image/upload/v1490343786/kiwari-prod_user_id_201/sa6r61reovri6dtrajly.jpg",
-                        "email": "userid_201_6285877700050@kiwari-prod.com",
-                        "id": 326,
-                        "last_comment_read_id": 425609,
-                        "last_comment_received_id": 411931,
-                        "username": "A. Athaullah"
-                    }
-                ],
-                "room_avatar_url": "https://res.cloudinary.com/qiscus/image/upload/v1493173118/group_avatar_kiwari-prod_user_id_93/c7tankz1i4yi6620btby.jpg",
-                "room_id": 1275,
-                "room_name": "Qiscus SDK clients",
-                "room_type": "group",
-                "unread_count": 0
             }
         ]
     },
