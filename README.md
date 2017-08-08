@@ -290,7 +290,7 @@ response, is same as response in `/sdk` post comment:
 
 There are several type of comment (message) that you can post to a room. Each comment has different payload format:
 
-### type: account_linking
+### type account_linking
 
 example payload structure:
 
@@ -310,7 +310,7 @@ example payload structure:
 ```
 
 
-## type: buttons
+## type buttons
 
 example payload structure:
 
@@ -339,7 +339,7 @@ example payload structure:
 }
 ```
 
-### type: button_postback_response
+### type button_postback_response
 
 This is for response in button with type** postback**, example payload structure:
 
@@ -352,7 +352,7 @@ This is for response in button with type** postback**, example payload structure
 ```
 
 
-### type: reply
+### type reply
 
 example payload structure:
 
@@ -381,7 +381,7 @@ payload: {
 ```
 
 
-### type: system_event
+### type system_event
 
 you cannot post comment using this end-point, nor SDK client post comment end-point. To post comment with type **system_event** only can be done using `POST /api/v2/rest/post_system_event_message` endpoint.
 
@@ -405,7 +405,7 @@ payload: {
 ```
 
 
-**sub type: add_member**
+**sub type add_member**
 
 example response payload:
 
@@ -424,7 +424,7 @@ payload: {
 ```
 
 
-**sub type: join_room**
+**sub type join_room**
 
 example response payload:
 
@@ -443,7 +443,7 @@ payload: {
 
 
 
-**sub type: remove_member**
+**sub type remove_member**
 
 example response payload:
 
@@ -462,7 +462,7 @@ payload: {
 ```
 
 
-**sub type: left_room**
+**sub type left_room**
 
 example response payload:
 
@@ -481,7 +481,7 @@ payload: {
 
 
 
-**sub type: change_room_name**
+**sub type change_room_name**
 
 example response payload:
 
@@ -499,7 +499,7 @@ payload: {
 ```
 
 
-**sub type: change_room_avatar**
+**sub type change_room_avatar**
 
 example response payload:
 
@@ -515,7 +515,7 @@ payload: {
 ```
 
 
-**sub type: custom**
+**sub type custom**
 
 will post message to room with System User as a sender and payload is defined by you as a client. Example, if you post payload as:
 
@@ -536,7 +536,7 @@ So, the response payload string will be the same as you have inputted:
 ```
 
 
-### type: card
+### type card
 
 request payload structure:
 
@@ -600,7 +600,7 @@ response payload example:
 ```
 
 
-### type: custom
+### type custom
 
 Request payload must be valid json string object, and it will return as what you have inputted. Example request payload:
 
