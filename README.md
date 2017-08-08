@@ -310,7 +310,7 @@ example payload structure:
 ```
 
 
-## type buttons
+### type buttons
 
 example payload structure:
 
