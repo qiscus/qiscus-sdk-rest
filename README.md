@@ -6,7 +6,186 @@ example : if your APP_ID is `domino-prod` means the base_url will be `domino-pro
 
 ## Authentication
 
-Add `QISCUS_SDK_SECRET` on every header's request, you can get the value from dashboard.qiscus.com
+Add `SECRET KEY` on every header's request, you can get the value from www.qiscus.com/dashboard
+
+## Login or Register
+
+verb :
+
+`POST /api/v2/rest/login_or_register`
+
+request :
+
+```
+email [string]
+password [string password, optional] # password will be updated if user already exist
+username [string]
+avatar_url [string url, optional]
+device_token [string, optional]
+device_platform ["ios" or "android", optional]
+```
+
+
+response :
+
+```
+{
+    "status": 200,
+    "results": {
+        "user": {
+            "id": 1,
+            "email": "email@qiscus.com",
+            "username": "Johnny Cage",
+            "avatar_url": "https://myimagebucket.com/image.jpg",
+            "token": "abcde1234defgh"
+        },
+    }
+}
+```
+
+
+## Reset User Authentication Token
+
+In case your user token is compromised, you can reset their token at any time. This make previous token no longer valid.
+
+verb:
+
+`POST /api/v2/rest/reset_user_token`
+
+request:
+
+```
+user_email [string] user email to reset
+```
+
+response:
+
+```
+{
+    "results": {
+        "user": {
+            "avatar": {
+                "url": "https://res.cloudinary.com/qiscus/image/upload/v1492579000/kiwari-prod_user_id_108/m9lvv1ykfrgw3lte0ojb.jpg"
+            },
+            "avatar_url": "https://res.cloudinary.com/qiscus/image/upload/v1492579000/kiwari-prod_user_id_108/m9lvv1ykfrgw3lte0ojb.jpg",
+            "email": "userid_108_6285868231412@kiwari-prod.com",
+            "id": 144,
+            "last_comment_id": 443376,
+            "pn_android_configured": true,
+            "pn_ios_configured": true,
+            "rtKey": "somestring",
+            "token": "kj2oLfL9CwzKZXxkHfHE",
+            "username": "Yusuf"
+        }
+    },
+    "status": 200
+}
+```
+
+## Get User Room List
+
+Will show maximum 20 data per page. Verb:
+
+
+`GET /api/v2/rest/get_user_rooms`
+
+request:
+
+```
+user_email [string] required
+page [int] number of page, optional
+show_participants [bool] "true" or "false" 
+```
+
+
+response when **show_participants** is false:
+
+```
+{
+    "results": {
+        "meta": {
+            "current_page": 1,
+            "total_room": 39
+        },
+        "rooms_info": [
+            {
+                "last_comment_id": 443375,
+                "last_comment_message": "Yusuf added Heru S",
+                "last_comment_timestamp": "2017-08-04T15:45:07Z",
+                "room_avatar_url": "",
+                "room_id": 1339,
+                "room_name": "Heru S",
+                "room_type": "single",
+                "unread_count": 19
+            },
+            {
+                "last_comment_id": 430237,
+                "last_comment_message": "Haha",
+                "last_comment_timestamp": "2017-07-14T09:19:40Z",
+                "room_avatar_url": "https://res.cloudinary.com/qiscus/image/upload/v1493780549/group_avatar_kiwari-prod_user_id_74/chbflw5rqfdlj0orsfzj.jpg",
+                "room_id": 1325,
+                "room_name": "qiscus AI",
+                "room_type": "group",
+                "unread_count": 56
+            }
+        ]
+    },
+    "status": 200
+}
+```
+
+response when **show_participants** is true:
+
+```
+{
+    "results": {
+        "meta": {
+            "current_page": 1,
+            "total_room": 39
+        },
+        "rooms_info": [
+            {
+                "last_comment_id": 443376,
+                "last_comment_message": "halo",
+                "last_comment_timestamp": "2017-08-07T11:10:59Z",
+                "participants": [
+                    {
+                        "avatar_url": "https://res.cloudinary.com/qiscus/image/upload/v1492579000/kiwari-prod_user_id_108/m9lvv1ykfrgw3lte0ojb.jpg",
+                        "email": "userid_108_6285868231412@kiwari-prod.com",
+                        "id": 144,
+                        "last_comment_read_id": 443376,
+                        "last_comment_received_id": 426622,
+                        "username": "Yusuf"
+                    },
+                    {
+                        "avatar_url": "https://res.cloudinary.com/qiscus/image/upload/v1486119595/kiwari-prod_user_id_72/tcqbyg6adc6e9mymb9nr.jpg",
+                        "email": "userid_72_6281226612018@kiwari.com",
+                        "id": 101,
+                        "last_comment_read_id": 428889,
+                        "last_comment_received_id": 426622,
+                        "username": "Delta"
+                    },
+                    {
+                        "avatar_url": "https://res.cloudinary.com/qiscus/image/upload/v1490343786/kiwari-prod_user_id_201/sa6r61reovri6dtrajly.jpg",
+                        "email": "userid_201_6285877700050@kiwari-prod.com",
+                        "id": 326,
+                        "last_comment_read_id": 425609,
+                        "last_comment_received_id": 411931,
+                        "username": "A. Athaullah"
+                    }
+                ],
+                "room_avatar_url": "https://res.cloudinary.com/qiscus/image/upload/v1493173118/group_avatar_kiwari-prod_user_id_93/c7tankz1i4yi6620btby.jpg",
+                "room_id": 1275,
+                "room_name": "Qiscus SDK clients",
+                "room_type": "group",
+                "unread_count": 0
+            }
+        ]
+    },
+    "status": 200
+}
+```
+
 
 ## Create room
 
@@ -290,7 +469,7 @@ response, is same as response in `/sdk` post comment:
 
 There are several type of comment (message) that you can post to a room. Each comment has different payload format:
 
-### type: account_linking
+### type account_linking
 
 example payload structure:
 
@@ -310,7 +489,7 @@ example payload structure:
 ```
 
 
-## type: buttons
+### type buttons
 
 example payload structure:
 
@@ -339,7 +518,7 @@ example payload structure:
 }
 ```
 
-### type: button_postback_response
+### type button_postback_response
 
 This is for response in button with type** postback**, example payload structure:
 
@@ -352,7 +531,7 @@ This is for response in button with type** postback**, example payload structure
 ```
 
 
-### type: reply
+### type reply
 
 example payload structure:
 
@@ -381,7 +560,7 @@ payload: {
 ```
 
 
-### type: system_event
+### type system_event
 
 you cannot post comment using this end-point, nor SDK client post comment end-point. To post comment with type **system_event** only can be done using `POST /api/v2/rest/post_system_event_message` endpoint.
 
@@ -405,7 +584,7 @@ payload: {
 ```
 
 
-**sub type: add_member**
+**sub type add_member**
 
 example response payload:
 
@@ -424,7 +603,7 @@ payload: {
 ```
 
 
-**sub type: join_room**
+**sub type join_room**
 
 example response payload:
 
@@ -443,7 +622,7 @@ payload: {
 
 
 
-**sub type: remove_member**
+**sub type remove_member**
 
 example response payload:
 
@@ -462,7 +641,7 @@ payload: {
 ```
 
 
-**sub type: left_room**
+**sub type left_room**
 
 example response payload:
 
@@ -481,7 +660,7 @@ payload: {
 
 
 
-**sub type: change_room_name**
+**sub type change_room_name**
 
 example response payload:
 
@@ -499,7 +678,7 @@ payload: {
 ```
 
 
-**sub type: change_room_avatar**
+**sub type change_room_avatar**
 
 example response payload:
 
@@ -515,7 +694,7 @@ payload: {
 ```
 
 
-**sub type: custom**
+**sub type custom**
 
 will post message to room with System User as a sender and payload is defined by you as a client. Example, if you post payload as:
 
@@ -536,7 +715,7 @@ So, the response payload string will be the same as you have inputted:
 ```
 
 
-### type: card
+### type card
 
 request payload structure:
 
@@ -600,7 +779,7 @@ response payload example:
 ```
 
 
-### type: custom
+### type custom
 
 Request payload must be valid json string object, and it will return as what you have inputted. The json payload must have an type and content object. Type must be string, for example if you want to create promo payload, it can be “promo”. The content can be anything, such as object, array, number or string in JSON. By this, you can input, let say XML string in payload.content object value and later you can parse it by yourself by overriding SDK client chat view.
 
@@ -682,86 +861,7 @@ response:
 }
 ```
 
-## Login or Register
 
-verb :
-
-`POST /api/v2/rest/login_or_register`
-
-request :
-
-```
-email [string]
-password [string password, optional] # password will be updated if user already exist
-username [string]
-avatar_url [string url, optional]
-device_token [string, optional]
-device_platform ["ios" or "android", optional]
-```
-
-
-response :
-
-```
-{
-    "status": 200,
-    "results": {
-        "user": {
-            "id": 1,
-            "email": "email@qiscus.com",
-            "username": "Johnny Cage",
-            "avatar_url": "https://myimagebucket.com/image.jpg",
-            "token": "abcde1234defgh"
-        },
-    }
-}
-```
-
-## Webhook
-
-Webhooks make it super easy to build on top of Qiscus SDK. They are user-defined callbacks. They are triggered by events -- in this case, messages from customers and businesses. When the event occurs, the webhook will make a call to the URI it’s configured to.
-
-### post comment
-
-```
-{
-    "type": "post_comment_mobile", // either type "post_comment_mobile" if from /sdk API or "post_comment_rest" if from /rest API
-    "payload": {
-        "from": {
-            "id": 1,
-            "email": "user1@gmail.com",
-            "name": "User1",
-        },
-        "room": {
-            "id": 1,
-            "topic_id": 1,
-            "type": "group", # can also be single
-            "name": "ini grup",
-            "participants": [
-                {
-                    "id": 1,
-                    "email": "user1@gmail.com",
-                    "username": "User1",
-                    "avatar_url": "http://avatar1.jpg"
-                },
-                {
-                    "id": 2,
-                    "email": "user2@gmail.com",
-                    "username": "User2",
-                    "avatar_url": "http://avatar2.jpg"
-                }
-            ]
-        },
-        "message": {
-            "type": "text",
-            "text": "ini pesan",
-            "payload": {
-                # comment type specific payload
-            }
-        }
-    }
-}
-```
 
 ## Post System Event Message
 To send event system message such as creating group, join room, remove member, etc
@@ -1170,145 +1270,50 @@ response:
 }
 ```
 
-## Reset User Authentication Token
 
-In case your user token is compromised, you can reset their token at any time. This make previous token no longer valid.
+# Webhook
 
-verb:
+Webhooks make it super easy to build on top of Qiscus SDK. They are user-defined callbacks. They are triggered by events -- in this case, messages from customers and businesses. When the event occurs, the webhook will make a call to the URI it’s configured to.
 
-`POST /api/v2/rest/reset_user_token`
-
-request:
-
-```
-user_email [string] user email to reset
-```
-
-response:
+## Webhook on post comment
 
 ```
 {
-    "results": {
-        "user": {
-            "avatar": {
-                "url": "https://res.cloudinary.com/qiscus/image/upload/v1492579000/kiwari-prod_user_id_108/m9lvv1ykfrgw3lte0ojb.jpg"
-            },
-            "avatar_url": "https://res.cloudinary.com/qiscus/image/upload/v1492579000/kiwari-prod_user_id_108/m9lvv1ykfrgw3lte0ojb.jpg",
-            "email": "userid_108_6285868231412@kiwari-prod.com",
-            "id": 144,
-            "last_comment_id": 443376,
-            "pn_android_configured": true,
-            "pn_ios_configured": true,
-            "rtKey": "somestring",
-            "token": "kj2oLfL9CwzKZXxkHfHE",
-            "username": "Yusuf"
+    "type": "post_comment_mobile", // either type "post_comment_mobile" if from /sdk API or "post_comment_rest" if from /rest API
+    "payload": {
+        "from": {
+            "id": 1,
+            "email": "user1@gmail.com",
+            "name": "User1",
+        },
+        "room": {
+            "id": 1,
+            "topic_id": 1,
+            "type": "group", # can also be single
+            "name": "ini grup",
+            "participants": [
+                {
+                    "id": 1,
+                    "email": "user1@gmail.com",
+                    "username": "User1",
+                    "avatar_url": "http://avatar1.jpg"
+                },
+                {
+                    "id": 2,
+                    "email": "user2@gmail.com",
+                    "username": "User2",
+                    "avatar_url": "http://avatar2.jpg"
+                }
+            ]
+        },
+        "message": {
+            "type": "text",
+            "text": "ini pesan",
+            "payload": {
+                # comment type specific payload
+            }
         }
-    },
-    "status": 200
-}
-```
-
-## Get User Room List
-
-Will show maximum 20 data per page. Verb:
-
-
-`GET /api/v2/rest/get_user_rooms`
-
-request:
-
-```
-user_email [string] required
-page [int] number of page, optional
-show_participants [bool] "true" or "false" 
-```
-
-
-response when **show_participants** is false:
-
-```
-{
-    "results": {
-        "meta": {
-            "current_page": 1,
-            "total_room": 39
-        },
-        "rooms_info": [
-            {
-                "last_comment_id": 443375,
-                "last_comment_message": "Yusuf added Heru S",
-                "last_comment_timestamp": "2017-08-04T15:45:07Z",
-                "room_avatar_url": "",
-                "room_id": 1339,
-                "room_name": "Heru S",
-                "room_type": "single",
-                "unread_count": 19
-            },
-            {
-                "last_comment_id": 430237,
-                "last_comment_message": "Haha",
-                "last_comment_timestamp": "2017-07-14T09:19:40Z",
-                "room_avatar_url": "https://res.cloudinary.com/qiscus/image/upload/v1493780549/group_avatar_kiwari-prod_user_id_74/chbflw5rqfdlj0orsfzj.jpg",
-                "room_id": 1325,
-                "room_name": "qiscus AI",
-                "room_type": "group",
-                "unread_count": 56
-            }
-        ]
-    },
-    "status": 200
-}
-```
-
-response when **show_participants** is true:
-
-```
-{
-    "results": {
-        "meta": {
-            "current_page": 1,
-            "total_room": 39
-        },
-        "rooms_info": [
-            {
-                "last_comment_id": 443376,
-                "last_comment_message": "halo",
-                "last_comment_timestamp": "2017-08-07T11:10:59Z",
-                "participants": [
-                    {
-                        "avatar_url": "https://res.cloudinary.com/qiscus/image/upload/v1492579000/kiwari-prod_user_id_108/m9lvv1ykfrgw3lte0ojb.jpg",
-                        "email": "userid_108_6285868231412@kiwari-prod.com",
-                        "id": 144,
-                        "last_comment_read_id": 443376,
-                        "last_comment_received_id": 426622,
-                        "username": "Yusuf"
-                    },
-                    {
-                        "avatar_url": "https://res.cloudinary.com/qiscus/image/upload/v1486119595/kiwari-prod_user_id_72/tcqbyg6adc6e9mymb9nr.jpg",
-                        "email": "userid_72_6281226612018@kiwari.com",
-                        "id": 101,
-                        "last_comment_read_id": 428889,
-                        "last_comment_received_id": 426622,
-                        "username": "Delta"
-                    },
-                    {
-                        "avatar_url": "https://res.cloudinary.com/qiscus/image/upload/v1490343786/kiwari-prod_user_id_201/sa6r61reovri6dtrajly.jpg",
-                        "email": "userid_201_6285877700050@kiwari-prod.com",
-                        "id": 326,
-                        "last_comment_read_id": 425609,
-                        "last_comment_received_id": 411931,
-                        "username": "A. Athaullah"
-                    }
-                ],
-                "room_avatar_url": "https://res.cloudinary.com/qiscus/image/upload/v1493173118/group_avatar_kiwari-prod_user_id_93/c7tankz1i4yi6620btby.jpg",
-                "room_id": 1275,
-                "room_name": "Qiscus SDK clients",
-                "room_type": "group",
-                "unread_count": 0
-            }
-        ]
-    },
-    "status": 200
+    }
 }
 ```
 
