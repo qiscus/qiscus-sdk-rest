@@ -807,6 +807,22 @@ The response payload will be:
 ```
 
 
+### type: location
+
+The message text will be `name + address + map_url`. Example request payload:
+
+
+```json
+{
+   "name": "Mirota Kampus 2 Simanjuntak",
+   "address": "Jalan C Simanjuntak No.70, Terban, Gondokusuman, Kota Yogyakarta, Daerah Istimewa Yogyakarta 55223",
+   "latitude": 1213.2323,
+   "longitude": 1223223.1212,
+   "map_url": "https://goo.gl/maps/nkY2DBF1quM2"
+}
+
+```
+
 ## Load comments
 
 verb:
