@@ -602,12 +602,17 @@ response payload example:
 
 ### type: custom
 
-Request payload must be valid json string object, and it will return as what you have inputted. Example request payload:
+Request payload must be valid json string object, and it will return as what you have inputted. The json payload must have an type and content object. Type must be string, for example if you want to create promo payload, it can be “promo”. The content can be anything, such as object, array, number or string in JSON. By this, you can input, let say XML string in payload.content object value and later you can parse it by yourself by overriding SDK client chat view.
+
+example request payload:
 
 
 ```json
 {
-  "foo": "bar"
+    "type": "promo", // sub type of custom payload
+    "content": {
+        "date": "2017-09-09" 
+    } // can be anything: object, array, string, number in JSON
 }
 ```
 
@@ -615,7 +620,10 @@ The response payload will be:
 
 ```json
 {
-  "foo": "bar"
+    "type": "promo",
+    "content": {
+        "date": "2017-09-09"
+    } 
 }
 ```
 
