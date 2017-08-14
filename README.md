@@ -823,17 +823,6 @@ The message text will be `name + address + map_url`. Example request payload:
 
 ```
 
-### type contact
-
-Message text will be `name - value`
-
-```json
-{
-  "name": "Evan",
-  "value": "e@qiscus.com"
-}
-```
-
 ## Load comments
 
 verb:
@@ -1290,6 +1279,61 @@ response:
                 "status": "finished",
                 "total_rows": 1,
                 "unique_id": "85cfa162-f8ac-4e91-a6a4-a2e4ab25e150"
+            }
+        ]
+    },
+    "status": 200
+}
+```
+
+
+## Search Messages
+
+Will get last 100 messages, if it is more than 100 result, you can get with parameter last_comment_id.
+
+verb:
+
+`POST /api/v2/rest/search_messages`
+
+request:
+
+```
+user_email [string] required, user email
+query [string] required, keyword to search
+room_id [integer] optional, send this param if you want search message in specific room
+last_comment_id [integer] optional, will get comments after this id
+```
+
+response:
+
+
+```json
+{
+    "results": {
+        "comments": [
+            {
+                "chat_type": "group",
+                "comment_before_id": 155913,
+                "disable_link_preview": false,
+                "email": "userid_74_6281212962110@kiwari.com",
+                "id": 156028,
+                "message": "Support integration",
+                "payload": null,
+                "room_id": 1275,
+                "room_name": "Qiscus SDK clients",
+                "timestamp": "2017-04-25T05:20:48Z",
+                "topic_id": 1275,
+                "type": "text",
+                "unique_temp_id": "bq1493097648433",
+                "unix_timestamp": 1493097648,
+                "user_avatar": {
+                    "avatar": {
+                        "url": "https://res.cloudinary.com/qiscus/image/upload/v1493460995/kiwari-prod_user_id_74/fsx7ueheeavclilc5djl.jpg"
+                    }
+                },
+                "user_avatar_url": "https://res.cloudinary.com/qiscus/image/upload/v1493460995/kiwari-prod_user_id_74/fsx7ueheeavclilc5djl.jpg",
+                "user_id": 103,
+                "username": "Evan"
             }
         ]
     },
