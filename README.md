@@ -884,7 +884,9 @@ To send event system message such as creating group, join room, remove member, e
 
 verb:
 
-`POST /api/v2/rest/post_system_event_message`
+```
+POST /api/v2/rest/post_system_event_message
+```
 
 
 request:
@@ -950,7 +952,9 @@ description: will request a backup as json
 
 verb:
 
-`POST /api/v2/rest/exports`
+```
+POST /api/v2/rest/exports
+```
 
 request:
 
@@ -987,7 +991,9 @@ response:
 
 verb:
 
-`GET /api/v2/rest/exports`
+```
+GET /api/v2/rest/exports
+```
 
 
 request:
@@ -1030,7 +1036,9 @@ will return maximum 20 rows of recent backup
 
 verb:
 
-`GET /api/v2/rest/exports/:backup_unique_id`
+```
+GET /api/v2/rest/exports/:backup_unique_id
+```
 
 where `:backup_unique_id` is unique id of backup
 
@@ -1062,7 +1070,9 @@ response:
 
 verb:
 
-`DELETE /api/v2/rest/exports/:backup_unique_id`
+```
+DELETE /api/v2/rest/exports/:backup_unique_id
+```
 
 where `:backup_unique_id` is unique id of backup
 
@@ -1095,7 +1105,9 @@ response:
 
 verb:
 
-`POST /api/v2/rest/imports`
+```
+POST /api/v2/rest/imports
+```
 
 
 request:
@@ -1256,7 +1268,9 @@ Example data to import:
 
 verb:
 
-`GET /api/v2/rest/imports`
+```
+GET /api/v2/rest/imports
+```
 
 request:
 
@@ -1293,7 +1307,10 @@ Will get last 100 messages, if it is more than 100 result, you can get with para
 
 verb:
 
-`POST /api/v2/rest/search_messages`
+```
+POST /api/v2/rest/search_messages
+```
+
 
 request:
 
