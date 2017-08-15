@@ -823,6 +823,17 @@ The message text will be `name + address + map_url`. Example request payload:
 
 ```
 
+### type contact_persom
+
+message text will be `name - value`
+
+```json
+{
+  "name": "Evan",
+  "value": "e@qiscus.com"
+}
+```
+
 ## Load comments
 
 verb:
