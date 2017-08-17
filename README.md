@@ -823,7 +823,7 @@ The message text will be `name + address + map_url`. Example request payload:
 
 ```
 
-** type contact_persom **
+** type contact_person **
 
 message text will be `name - value`
 
