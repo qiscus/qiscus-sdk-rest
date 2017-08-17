@@ -1370,18 +1370,19 @@ response:
 ```
 
 
-# Webhook
+# Webhooks
 
-Webhooks make it super easy to build on top of Qiscus SDK. They are user-defined callbacks. They are triggered by events -- in this case, messages from customers and businesses. When the event occurs, the webhook will make a call to the URI it’s configured to.
+Webhooks make it super easy to build on top of Qiscus SDK. They are user-defined callbacks. They are triggered by events -- in this case, messages from customers and businesses. When the event occurs, the webhook will make a http(s) call to the URI it’s configured to.
 
 ## on post message
 
 Webhooks on post message being triggered either from sdk client side or from REST API  
 
 ```
-PROTOCOL : HTTP
+PROTOCOL : HTTPS
 VERB : POST
 ```
+
 payload being send to your endpoint is below
 
 ```
