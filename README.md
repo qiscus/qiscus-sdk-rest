@@ -807,7 +807,7 @@ The response payload will be:
 ```
 
 
-### type location
+** type location **
 
 The message text will be `name + address + map_url`. Example request payload:
 
@@ -823,7 +823,7 @@ The message text will be `name + address + map_url`. Example request payload:
 
 ```
 
-### type contact_persom
+** type contact_persom **
 
 message text will be `name - value`
 
