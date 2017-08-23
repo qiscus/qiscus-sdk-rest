@@ -84,7 +84,9 @@ response:
 
 ## Get User Room List
 
-Will show maximum 20 data per page. Verb:
+Will show maximum 20 data per page. If page parameter empty, this API will return all conversations (max 100) 
+
+Verb:
 
 
 `GET /api/v2/rest/get_user_rooms`
