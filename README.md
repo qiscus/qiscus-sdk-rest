@@ -202,6 +202,7 @@ request:
 name [string]
 participants[] [array of string email]
 creator [string email]
+avatar_url [string] optional
 ```
 
 response:
