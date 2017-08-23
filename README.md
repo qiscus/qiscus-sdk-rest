@@ -84,7 +84,9 @@ response:
 
 ## Get User Room List
 
-Will show maximum 20 data per page. Verb:
+Will show maximum 20 data per page. If page parameter empty, this API will return all conversations (max 100) 
+
+Verb:
 
 
 `GET /api/v2/rest/get_user_rooms`
@@ -470,7 +472,7 @@ response, is same as response in `/sdk` post comment:
 
 There are several type of comment (message) that you can post to a room. Each comment has different payload format:
 
-### type account_linking
+** type account_linking **
 
 example payload structure:
 
@@ -490,7 +492,7 @@ example payload structure:
 ```
 
 
-### type buttons
+** type buttons **
 
 example payload structure:
 
@@ -519,7 +521,7 @@ example payload structure:
 }
 ```
 
-### type button_postback_response
+** type button_postback_response **
 
 This is for response in button with type** postback**, example payload structure:
 
@@ -532,7 +534,7 @@ This is for response in button with type** postback**, example payload structure
 ```
 
 
-### type reply
+ ** type reply **
 
 example payload structure:
 
@@ -561,7 +563,7 @@ payload: {
 ```
 
 
-### type system_event
+** type system_event **
 
 you cannot post comment using this end-point, nor SDK client post comment end-point. To post comment with type **system_event** only can be done using `POST /api/v2/rest/post_system_event_message` endpoint.
 
@@ -716,7 +718,7 @@ So, the response payload string will be the same as you have inputted:
 ```
 
 
-### type card
+** type card **
 
 request payload structure:
 
@@ -780,7 +782,7 @@ response payload example:
 ```
 
 
-### type custom
+** type custom **
 
 Request payload must be valid json string object, and it will return as what you have inputted. The json payload must have an type and content object. Type must be string, for example if you want to create promo payload, it can be “promo”. The content can be anything, such as object, array, number or string in JSON. By this, you can input, let say XML string in payload.content object value and later you can parse it by yourself by overriding SDK client chat view.
 
@@ -808,7 +810,7 @@ The response payload will be:
 ```
 
 
-### type location
+** type location **
 
 The message text will be `name + address + map_url`. Example request payload:
 
@@ -824,7 +826,7 @@ The message text will be `name + address + map_url`. Example request payload:
 
 ```
 
-### type contact_persom
+** type contact_person **
 
 message text will be `name - value`
 
@@ -1371,15 +1373,24 @@ response:
 ```
 
 
-# Webhook
+# Webhooks
 
-Webhooks make it super easy to build on top of Qiscus SDK. They are user-defined callbacks. They are triggered by events -- in this case, messages from customers and businesses. When the event occurs, the webhook will make a call to the URI it’s configured to.
+Webhooks make it super easy to build on top of Qiscus SDK. They are user-defined callbacks. They are triggered by events -- in this case, messages from customers and businesses. When the event occurs, the webhook will make a http(s) call to the URI it’s configured to.
 
-## Webhook on post comment
+## on post message
+
+Webhooks on post message being triggered either from sdk client side or from REST API  
+
+```
+PROTOCOL : HTTPS
+VERB : POST
+```
+
+payload being send to your endpoint is below
 
 ```
 {
-    "type": "post_comment_mobile", // either type "post_comment_mobile" if from /sdk API or "post_comment_rest" if from /rest API
+    "type": "post_comment_mobile", // either type "post_comment_mobile" if from client side or "post_comment_rest" if from REST API
     "payload": {
         "from": {
             "id": 1,
