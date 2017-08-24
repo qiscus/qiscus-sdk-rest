@@ -225,6 +225,102 @@ response:
 }
 ```
 
+## Update Room
+
+verb:
+
+```
+POST /api/v2/rest/update_room
+```
+
+request:
+
+```
+user_email [string required] must one of user participant
+room_id [integer required] must be group room
+room_name [string optional]
+room_avatar_url [string optional]
+options [string optional]
+```
+
+
+response:
+
+```json
+{
+  "results": {
+    "changed": true,
+    "room": {
+      "chat_type": "group", // always group
+      "id": 18,
+      "last_comment_id": 0,
+      "last_comment_message": "",
+      "last_topic_id": 0,
+      "avatar_url": "http://avatar.jpg",
+      "options": "",
+      "participants": [
+        {
+          "avatar_url": "https://qiscuss3.s3.amazonaws.com/uploads/55c0c6ee486be6b686d52e5b9bbedbbf/2.png",
+          "email": "asasmoyo@outlook.com",
+          "username": "asasmoyo",
+          "last_comment_read_id": 0,
+          "last_comment_received_id": 0
+        },
+        {
+          "avatar_url": "https://qiscuss3.s3.amazonaws.com/uploads/55c0c6ee486be6b686d52e5b9bbedbbf/2.png",
+          "email": "kotak@outlook.com",
+          "username": "kotak",
+          "last_comment_read_id": 0,
+          "last_comment_received_id": 0
+        }
+      ],
+      "room_name": "uwooo"
+    },
+    "comments": [
+        {
+        "id": 985,
+        "comment_before_id": 984,
+        "message": "Hello Post 2",
+        "type": "text"
+        "payload": {},
+        "disable_link_preview": false,
+        "email": "f1@gmail.com",
+        "username": "f1",
+        "user_avatar": {
+            "avatar": {
+                "url": "http://imagebucket.com/image.jpg"
+            }
+        },
+        "user_avatar_url": "http://imagebucket.com/image.jpg",
+        "timestamp": "2016-09-06T16:18:50+00:00",
+        "unix_timestamp": 1489999170,
+        "unique_temp_id": "CanBeAnything1234321"        
+      },
+      {
+        "id": 985,
+        "comment_before_id": 984,
+        "message": "Hello Post 2",
+        "type": "text"
+        "payload": {},
+        "disable_link_preview": false,
+        "username": "f1",
+        "email": "f1@gmail.com",
+        "user_avatar": {
+            "avatar": {
+                "url": "http://imagebucket.com/image.jpg"
+            }
+        },
+        "user_avatar_url": "http://imagebucket.com/image.jpg",
+        "timestamp": "2016-09-06T16:18:50+00:00",
+        "unix_timestamp": 1489999170,
+        "unique_temp_id": "CanBeAnything1234321"                
+      }
+    ]
+  },
+  "status": 200
+}
+```
+
 ## Get or create room with target
 
 verb:
@@ -238,7 +334,6 @@ request:
 
 ```
 emails[] [array of string] # must contains 2 emails
-avatar_url [string optional]
 ```
 
 response:
