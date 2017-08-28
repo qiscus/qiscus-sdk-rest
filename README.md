@@ -928,7 +928,8 @@ message text will be `name - value`
 ```json
 {
   "name": "Evan",
-  "value": "e@qiscus.com"
+  "value": "e@qiscus.com",
+  "type": "email" //optional, default is phone. Must be "email" or "phone" or empty string.
 }
 ```
 
