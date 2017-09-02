@@ -4,8 +4,11 @@ BASE_URL : [APP_ID].qiscus.com
 
 example : if your APP_ID is `domino-prod` means the base_url will be `domino-prod.qiscus.com`
 
+## Postman Collections
+
 You can see Postman collections of Qiscus REST APIs here :
-https://documenter.getpostman.com/view/484596/qiscus-sdk-postman-collection/6tXb66L#07399c07-4283-3140-ec89-55aea88fe7ac
+
+[Qiscus REST API Postman's Collections](https://documenter.getpostman.com/view/484596/qiscus-sdk-postman-collection/6tXb66L#07399c07-4283-3140-ec89-55aea88fe7ac)
 
 ## Authentication
 
