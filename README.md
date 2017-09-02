@@ -459,7 +459,7 @@ request:
 
 ```
 room_id [integer]
-emails [array of string emails]
+emails[] [array of string emails]
 ```
 
 response:
@@ -947,7 +947,7 @@ message text will be `name - value`
 verb:
 
 ```
-post /api/v2/rest/load_comments
+get /api/v2/rest/load_comments
 ```
 
 request:
