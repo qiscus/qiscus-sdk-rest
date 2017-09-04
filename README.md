@@ -33,7 +33,7 @@ request :
 
 ```
 email [string]
-password [string password, optional] # password will be updated if user already exist
+password [string password] # password will be updated if user already exist
 username [string]
 avatar_url [string url, optional]
 device_token [string, optional]
