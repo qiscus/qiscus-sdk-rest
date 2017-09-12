@@ -35,13 +35,15 @@ request :
 
 ```
 email [string]
-password [string password] # password will be updated if user already exist
+password [string password, optional] # password will be updated if user already exist
 username [string]
 avatar_url [string url, optional]
 device_token [string, optional]
 device_platform ["ios" or "android", optional]
 ```
 
+
+Note : `password` is optional, it will generate random string on the backend if you dont pass it during `User` creation. However, please note for those users already created you can not use this API `login_or_register` without passing password value
 
 response :
 
