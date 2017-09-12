@@ -144,8 +144,9 @@ request:
 
 ```
 user_email [string] required
-page [int] number of page, optional
-show_participants [bool] "true" or "false" 
+page [int, optional] number of page
+show_participants [bool, optional] "true" or "false" default will be false
+room_type [string, optional] filter by room type ("single" or "group") default will be return all type
 ```
 
 
