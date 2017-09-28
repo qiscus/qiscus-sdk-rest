@@ -668,47 +668,6 @@ example payload structure:
 }
 ```
 
-** type button_postback_response **
-
-This is for response in button with type** postback**, example payload structure:
-
-```json
-{
-    "url": "http://somewhere.com/button1",
-    "method": "get",
-    "payload": null
-}
-```
-
-
- ** type reply **
-
-example payload structure:
-
-```json
-payload: {
-    "text": "ini comment",
-    "replied_comment_id": 16227
-}
-```
-
-example response:
-
-```json
-....
-message: "user sender: `hello`\nini comment", // this one for maintaining backward compatibility
-payload: {
-    "text": "ini comment",
-    "replied_comment_id": 16231,
-    "replied_comment_type": "text"
-    "replied_comment_message": "hello",
-    "replied_comment_payload": null,
-    "replied_comment_sender_username": "username",
-    "replied_comment_sender_email": "email"
-}
-... // other payload structure is same as general response
-```
-
 
 ** type system_event **
 
