@@ -1084,7 +1084,6 @@ request:
 user_email [string] required, user email
 query [string] required, keyword to search
 room_id [string] optional, send this param if you want search message in specific room
-last_comment_id [integer] optional, will get comments after this id
 ```
 
 response:
