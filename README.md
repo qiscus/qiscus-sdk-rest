@@ -1069,7 +1069,7 @@ Will return last inserted comment and object id when type is add_member or remov
 
 ## Search Messages
 
-Will get last 100 messages, if it is more than 100 result, you can get with parameter last_comment_id.
+Search results will get last 100 messages on the query keyword.
 
 verb:
 
