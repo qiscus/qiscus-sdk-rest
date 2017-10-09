@@ -458,6 +458,7 @@ request:
 ```
 room_id[] [array of string]
 user_email [string email]
+show_participants [boolean true or false, default is false]
 ```
 
 response:
