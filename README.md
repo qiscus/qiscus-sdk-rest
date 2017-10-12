@@ -1,8 +1,7 @@
 # REST API
 
-BASE_URL : [APP_ID].qiscus.com
-
-example : if your APP_ID is `domino-prod` means the base_url will be `domino-prod.qiscus.com`
+> BASE_URL : [APP_ID].qiscus.com
+> example : if your APP_ID is `domino-prod` means the base_url will be `domino-prod.qiscus.com`
 
 ## Postman Collections
 
@@ -16,7 +15,7 @@ Add `SECRET KEY` on every header's request as 'QISCUS_SDK_SECRET', you can get t
 
 so for example if your `SECRET KEY` value is `8355105e6171795fca176366e0c16f22`, your header request will be :
 
-```
+```bash
 headers :
 
 QISCUS_SDK_SECRET: 8355105e6171795fca176366e0c16f22
@@ -28,12 +27,11 @@ QISCUS_SDK_SECRET: 8355105e6171795fca176366e0c16f22
 You can use this endpoint to create new user if it does not exist yet, or you can use this endpoint to update data of the user if they already exists
 
 verb :
-
 `POST /api/v2/rest/login_or_register`
 
 request :
 
-```
+```bash
 email [string]
 password [string password, optional] # password will be updated if user already exist
 username [string]
@@ -46,8 +44,7 @@ device_platform ["ios" or "android", optional]
 Note : `password` is optional, it will generate random string on the backend if you dont pass it during `User` creation through this API. However, please note for those users already created you can not use this API `login_or_register` without passing password value
 
 response :
-
-```
+```json
 {
     "status": 200,
     "results": {
@@ -72,14 +69,12 @@ verb :
 
 request :
 
-```
+```bash
 user_email [string]
 ```
 
-
 response :
-
-```
+```json
 {
     "status": 200,
     "results": {
@@ -104,14 +99,12 @@ verb:
 `POST /api/v2/rest/reset_user_token`
 
 request:
-
-```
+```bash
 user_email [string] user email to reset
 ```
 
 response:
-
-```
+```json
 {
     "results": {
         "user": {
@@ -135,16 +128,13 @@ response:
 
 ## Get User Room List
 
-Will show maximum 20 data per page. If page parameter empty, this API will return all conversations (max 100) 
+Will show maximum 20 data per page. If page parameter empty, this API will return all conversations (max 100)
 
 Verb:
-
-
 `GET /api/v2/rest/get_user_rooms`
 
 request:
-
-```
+```bash
 user_email [string] required
 page [int, optional] number of page
 show_participants [bool, optional] "true" or "false" default will be false
@@ -153,8 +143,7 @@ room_type [string, optional] filter by room type ("single" or "group") default w
 
 
 response when **show_participants** is false:
-
-```
+```json
 {
     "results": {
         "meta": {
@@ -189,8 +178,7 @@ response when **show_participants** is false:
 ```
 
 response when **show_participants** is true:
-
-```
+```json
 {
     "results": {
         "meta": {
@@ -244,24 +232,17 @@ response when **show_participants** is true:
 ## Create room
 
 verb:
-
-```
-POST /api/v2/rest/create_room
-```
-
+`POST /api/v2/rest/create_room`
 
 request:
-
-```
+```bash
 name [string]
 participants[] [array of string email]
 creator [string email]
 avatar_url [string] optional
 ```
-
 response:
-
-```
+```json
 {
   "results": {
     "creator": "abc@outlook.com",
@@ -280,14 +261,10 @@ response:
 ## Update Room
 
 verb:
-
-```
-POST /api/v2/rest/update_room
-```
+`POST /api/v2/rest/update_room`
 
 request:
-
-```
+```bash
 user_email [string required] must one of user participant
 room_id [string required] must be group room
 room_name [string optional]
@@ -295,9 +272,7 @@ room_avatar_url [string optional]
 options [string optional]
 ```
 
-
 response:
-
 ```json
 {
   "results": {
@@ -346,7 +321,7 @@ response:
         "user_avatar_url": "http://imagebucket.com/image.jpg",
         "timestamp": "2016-09-06T16:18:50+00:00",
         "unix_timestamp": 1489999170,
-        "unique_temp_id": "CanBeAnything1234321"        
+        "unique_temp_id": "CanBeAnything1234321"
       },
       {
         "id": 985,
@@ -365,7 +340,7 @@ response:
         "user_avatar_url": "http://imagebucket.com/image.jpg",
         "timestamp": "2016-09-06T16:18:50+00:00",
         "unix_timestamp": 1489999170,
-        "unique_temp_id": "CanBeAnything1234321"                
+        "unique_temp_id": "CanBeAnything1234321"
       }
     ]
   },
@@ -376,21 +351,14 @@ response:
 ## Get or create room with target
 
 verb:
-
-```
-GET /api/v2/rest/get_or_create_room_with_target
-```
-
+`GET /api/v2/rest/get_or_create_room_with_target`
 
 request:
-
-```
+```bash
 emails[] [array of string] # must contains 2 emails
 ```
-
 response:
-
-```
+```json
 {
   "results": {
     "comments": [
@@ -447,23 +415,16 @@ response:
 ## Get rooms info
 
 verb:
-
-```
-POST /api/v2/rest/get_rooms_info
-```
-
+`POST /api/v2/rest/get_rooms_info`
 
 request:
-
-```
+```bash
 room_id[] [array of string]
 user_email [string email]
 show_participants [boolean true or false, default is false]
 ```
-
 response:
-
-```
+```json
 {
   "results": {
     "rooms_info": [
@@ -494,21 +455,15 @@ response:
 ## Add room participants
 
 verb:
-
-```
-post /api/v2/rest/add_room_participants
-```
+`post /api/v2/rest/add_room_participants`
 
 request:
-
-```
+```bash
 room_id [string]
 emails[] [array of string emails]
 ```
-
 response:
-
-```
+```json
 {
   "results": {
     "creator": "abc@outlook.com",
@@ -528,21 +483,15 @@ response:
 ## Remove room participants
 
 verb:
-
-```
-post /api/v2/rest/remove_room_participants
-```
+`post /api/v2/rest/remove_room_participants`
 
 request:
-
-```
+```bash
 room_id [string]
 emails [array of string emails]
 ```
-
 response:
-
-```
+```json
 {
   "results": {
     "creator": "abc@outlook.com",
@@ -559,17 +508,13 @@ response:
 }
 ```
 
-## Post comment 
+## Post comment
 
 verb:
-
-```
-post /api/v2/rest/post_comment
-```
+`post /api/v2/rest/post_comment`
 
 request:
-
-```
+```bash
 sender_email [string]
 room_id [string], it can be room_id or channel id specified by client or auto generated by server
 message [string]
@@ -578,10 +523,8 @@ payload [string json, see payload definitions bellow]
 unique_temp_id [string, optional, default=generated by backend]
 disable_link_preview [bool, optional, default=false]
 ```
-
 response, is same as response in `/sdk` post comment:
-
-```
+```json
 {
   "results": {
     "comment": {
@@ -619,11 +562,8 @@ response, is same as response in `/sdk` post comment:
 ```
 
 There are several type of comment (message) that you can post to a room. Each comment has different payload format:
-
 ** type account_linking **
-
 example payload structure:
-
 ```json
 {
     "text": "silahkan login",
@@ -638,13 +578,8 @@ example payload structure:
     }
 }
 ```
-
-
 ** type buttons **
-
 example payload structure:
-
-
 ```json
 {
     "text": "silahkan pencet",
@@ -668,22 +603,21 @@ example payload structure:
     ]
 }
 ```
-
-
 ** type system_event **
 
-you cannot post comment using this end-point, nor SDK client post comment end-point. To post comment with type **system_event** only can be done using `POST /api/v2/rest/post_system_event_message` endpoint.
+you cannot post comment using this end-point, nor SDK client post comment
+end-point. To post comment with type **system_event** only can be
+done using `POST /api/v2/rest/post_system_event_message` endpoint.
 
-For each sub-type of system_event, there are different payload structure. This is example of payload response:
+For each sub-type of system_event, there are different payload
+structure. This is example of payload response:
 
 **sub type: create_room**
 
 example response payload:
-
-
 ```json
 ...
-message: "Ucup created room 'Qiscus'", 
+message: "Ucup created room 'Qiscus'",
 payload: {
     "type": "create_room",
     "subject_username": "Ucup",
@@ -693,12 +627,8 @@ payload: {
 ...
 ```
 
-
 **sub type add_member**
-
 example response payload:
-
-
 ```json
 ...
 message: "Ucup added Ani",
@@ -712,12 +642,8 @@ payload: {
 ...
 ```
 
-
 **sub type join_room**
-
 example response payload:
-
-
 ```json
 ...
 message: "Ucup joined room",
@@ -730,13 +656,8 @@ payload: {
 ...
 ```
 
-
-
 **sub type remove_member**
-
 example response payload:
-
-
 ```json
 ...
 message: "Ucup removed Ani",
@@ -749,13 +670,8 @@ payload: {
 }
 ...
 ```
-
-
 **sub type left_room**
-
 example response payload:
-
-
 ```json
 ...
 message: "Ucup left room",
@@ -768,13 +684,8 @@ payload: {
 ...
 ```
 
-
-
 **sub type change_room_name**
-
 example response payload:
-
-
 ```json
 ...
 message: "Ucup changed room name to 'Qiscus Super Family'",
@@ -787,11 +698,8 @@ payload: {
 ...
 ```
 
-
 **sub type change_room_avatar**
-
 example response payload:
-
 ```json
 ...
 message: "Ucup changed room avatar",
@@ -802,25 +710,21 @@ payload: {
 }
 ...
 ```
-
-
 **sub type custom**
-
-will post message to room with System User as a sender and payload is defined by you as a client. Example, if you post payload as:
-
+will post message to room with System User as a sender and payload is defined
+by you as a client. Example, if you post payload as:
 ```json
 {
     "type": "add_admin",
-    "admin_email": "admin@email.com" 
+    "admin_email": "admin@email.com"
 }
 ```
 
 So, the response payload string will be the same as you have inputted:
-
 ```json
 {
     "type": "add_admin",
-    "admin_email": "admin@email.com" 
+    "admin_email": "admin@email.com"
 }
 ```
 
@@ -828,7 +732,6 @@ So, the response payload string will be the same as you have inputted:
 ** type card **
 
 request payload structure:
-
 ```json
 {
     "text": "Special deal buat sista nih..",
@@ -856,10 +759,7 @@ request payload structure:
     ]
 }
 ```
-
-
 response payload example:
-
 ```json
 {
     "text": "Special deal buat sista nih..",
@@ -888,40 +788,37 @@ response payload example:
 }
 ```
 
-
 ** type custom **
-
-Request payload must be valid json string object, and it will return as what you have inputted. The json payload must have an type and content object. Type must be string, for example if you want to create promo payload, it can be “promo”. The content can be anything, such as object, array, number or string in JSON. By this, you can input, let say XML string in payload.content object value and later you can parse it by yourself by overriding SDK client chat view.
+Request payload must be valid json string object, and it will return as what
+you have inputted. The json payload must have an type and content object.
+Type must be string, for example if you want to create promo payload, it can
+be “promo”. The content can be anything, such as object, array, number or
+string in JSON. By this, you can input, let say XML string in
+payload.content object value and later you can parse it by yourself
+by overriding SDK client chat view.
 
 example request payload:
-
-
 ```json
 {
     "type": "promo", // sub type of custom payload
     "content": {
-        "date": "2017-09-09" 
+        "date": "2017-09-09"
     } // can be anything: object, array, string, number in JSON
 }
 ```
 
 The response payload will be:
-
 ```json
 {
     "type": "promo",
     "content": {
         "date": "2017-09-09"
-    } 
+    }
 }
 ```
 
-
 ** type location **
-
 The message text will be `name + address + map_url`. Example request payload:
-
-
 ```json
 {
    "name": "Mirota Kampus 2 Simanjuntak",
@@ -934,9 +831,7 @@ The message text will be `name + address + map_url`. Example request payload:
 ```
 
 ** type contact_person **
-
 message text will be `name - value`
-
 ```json
 {
   "name": "Evan",
@@ -948,22 +843,16 @@ message text will be `name - value`
 ## Load comments
 
 verb:
-
-```
-get /api/v2/rest/load_comments
-```
+`get /api/v2/rest/load_comments`
 
 request:
-
-```
+```bash
 room_id [string]
 page [int optional]
 limit [int optional default=20]
 ```
-
 response:
-
-```
+```json
 {
   "results": {
     "comments": [
@@ -999,38 +888,23 @@ response:
 }
 ```
 
-
-
 ## Post System Event Message
 To send event system message such as creating group, join room, remove member, etc
-
 verb:
-
-```
-POST /api/v2/rest/post_system_event_message
-```
+`POST /api/v2/rest/post_system_event_message`
 
 
 request:
-
-```
+```bash
 system_event_type [string] valid value is: "create_room", "add_member", "join_room", "remove_member", "left_room", "change_room_name", "change_room_avatar"
-
 room_id [string] required, room id to post
-
 subject_email [string] required, person who create a room, add member to room, join room, remove member from room, left from room, change room name and/or room avatar
-
 object_email[] [array of string] optional, only required when system event type is add_member or remove_member
-
 updated_room_name [string] optional, only required when system event message type is change_room_name or create_room
-
 ```
-
 response:
 Will return last inserted comment and object id when type is add_member or remove_member.
-
-
-```
+```json
 {
     "results": {
         "comment": {
@@ -1066,30 +940,18 @@ Will return last inserted comment and object id when type is add_member or remov
     "status": 200
 }
 ```
-
-
 ## Search Messages
-
 Search results will get last 100 messages on the query keyword.
-
 verb:
-
-```
-POST /api/v2/rest/search_messages
-```
-
-
+`POST /api/v2/rest/search_messages`
 request:
-
-```
+```bash
 user_email [string] required, user email
 query [string] required, keyword to search
 room_id [string] optional, send this param if you want search message in specific room
 ```
 
 response:
-
-
 ```json
 {
     "results": {
@@ -1129,24 +991,17 @@ response:
 ## Create or Request Backup
 
 description: will request a backup as json
-
 verb:
-
-```
-POST /api/v2/rest/exports
-```
+`POST /api/v2/rest/exports`
 
 request:
-
-```
-type [string] type of resource which will be exported, permitted value are: "users", "rooms", "comments" 
+```bash
+type [string] type of resource which will be exported, permitted value are: "users", "rooms", "comments"
 start_date [string] using format "YYYY-MM-DD"
 end_date [string] using format "YYYY-MM-DD"
 ```
-
 response:
-
-```
+```json
 {
     "results": {
         "created_at": "2017-07-17T10:19:44+07:00",
@@ -1162,32 +1017,20 @@ response:
     },
     "status": 200
 }
-
-
 ```
-
 
 ## Get List of Backup
-
 verb:
-
-```
-GET /api/v2/rest/exports
-```
-
+`GET /api/v2/rest/exports`
 
 request:
-
-```
+```bash
 page [int] page number, optional
 ```
 
-
 response:
-
 will return maximum 20 rows of recent backup
-
-```
+```json
 {
     "results": {
         "backup_histories": [
@@ -1207,25 +1050,14 @@ will return maximum 20 rows of recent backup
     },
     "status": 200
 }
-
-
 ```
-
 
 ## Get Backup By Id
-
 verb:
-
-```
-GET /api/v2/rest/exports/:backup_unique_id
-```
-
+`GET /api/v2/rest/exports/:backup_unique_id`
 where `:backup_unique_id` is unique id of backup
-
-
 response:
-
-```
+```json
 {
     "results": {
         "backup_history": {
@@ -1249,17 +1081,12 @@ response:
 ## Delete Backup By Id
 
 verb:
-
-```
-DELETE /api/v2/rest/exports/:backup_unique_id
-```
+`DELETE /api/v2/rest/exports/:backup_unique_id`
 
 where `:backup_unique_id` is unique id of backup
 
-
 response:
-
-```
+```json
 {
     "results": {
         "backup_history": {
@@ -1278,30 +1105,17 @@ response:
     "status": 200
 }
 ```
-
-
-
 ## Make an Import
-
 verb:
-
-```
-POST /api/v2/rest/imports
-```
-
+`POST /api/v2/rest/imports`
 
 request:
-
-
-```
-type [string] type of resource which will be exported, permitted value are: "users", "rooms", "comments" 
+```bash
+type [string] type of resource which will be exported, permitted value are: "users", "rooms", "comments"
 file [file] json file, limit 4 MB each import
 ```
-
-
 response:
-
-```
+```json
 {
     "results": {
         "backup_history": {
@@ -1324,13 +1138,14 @@ response:
 
 > Note: for each type, it must follows required format as specified below:
 
-
 ** Users **
+Email and authentication token must be unique, and you must have no same
+data (both email or unique id)in your database right now (you can check it
+by export it first).. Password in this json is plain password and system
+will encrypted it when save to db. We encourage you to use https version
+of avatar url. Another key will discarded when import.
 
-Email and authentication token must be unique, and you must have no same data (both email or unique id)in your database right now (you can check it by export it first).. Password in this json is plain password and system will encrypted it when save to db. We encourage you to use https version of avatar url. Another key will discarded when import.
-
-
-```
+```json
 [
   {
     "Email": "mymail@mymail.com",
@@ -1344,14 +1159,19 @@ Email and authentication token must be unique, and you must have no same data (b
 ```
 
 ** Rooms **
-
-* Unique id must be unique at application level (you cannot insert a new data with same unique id AND application id), and you must have no same unique id in your database right now (you can check it by export it first).
+* Unique id must be unique at application level (you cannot insert a new
+data with same unique id AND application id), and you must have no same
+unique id in your database right now (you can check it by export it first).
 * Avatar URL should be https.
-* If room type is single, the name inserted into db will be changed by logic using template “partcicipant1_email <<space>> participant2_email“, so please to make sure that if your room type is single, your participant must contains exactly 2 participant AND one of that participant is specified at CreatorEmail. Otherwise, if room type is group, Name will be the name of group.
-* CreatorEmail and all of ParticipantEmails must be exists in database (check by make an export users first).
-
-
-```
+* If room type is single, the name inserted into db will be
+changed by logic using template “partcicipant1_email <<space>>
+participant2_email“, so please to make sure that if your room type is single,
+your participant must contains exactly 2 participant AND one of that
+participant is specified at CreatorEmail. Otherwise, if room type is group,
+Name will be the name of group.
+* CreatorEmail and all of ParticipantEmails must be exists in database
+(check by make an export users first).
+```json
 [
   {
     "Name": "demo1@linkdokter.com 4992614d-9d32-4cc4-ae8e-310a7a0fdbb9",
@@ -1383,37 +1203,43 @@ Email and authentication token must be unique, and you must have no same data (b
 ]
 ```
 
-
 ** Comments **
 
-* UniqueId must be unique, and you must have no same unique id in your database right now (you can check it by export it first).
+* UniqueId must be unique, and you must have no same unique id in your database
+right now (you can check it by export it first).
 * RoomUniqueId must be exists in database (check by export it first).
 * CreatorEmail must be exists in database.
-* We remind you to only import comment using type **text **or **reply** only, since custom format may not fully supported.
+* We remind you to only import comment using type **text **or **reply** only,
+since custom format may not fully supported.
 
 
-Since comment has multiple type with different payload (and it must passes an validator for each type), you must specify a correct payload. You may notice that for some type, you need to pass an exact value, for example is replied_comment_id in type reply, it can be tricky since we cannot get exact value to get which comment id should be referred (because payload is saved in **JSON** data type and it **cannot be related to any foreign key**). But, thanks to RDBMS which can handle this problem. For type **reply **you must specify a value ParentCommentUniqueId, it can be related to comment unique id that already exist in database or UniqueId that you are specify before current object data.
+Since comment has multiple type with different payload (and it must passes an
+validator for each type), you must specify a correct payload. You may notice
+that for some type, you need to pass an exact value, for example is
+replied_comment_id in type reply, it can be tricky since we cannot get exact
+value to get which comment id should be referred (because payload is saved
+in **JSON** data type and it **cannot be related to any foreign key**). But,
+thanks to RDBMS which can handle this problem. For type **reply **you must
+specify a value ParentCommentUniqueId, it can be related to comment unique
+id that already exist in database or UniqueId that you are specify before
+current object data.
 
 > You can refer payload format in post comment section.
 
-
 Tips for import comment:
-
 Type: reply
 **text**: same as message
 **replied_comment_id**: 1, you must type literally integer 1 number, since it is means true when it came to validator service.
 
-```
+```json
 {
     "text": "ini comment",
     "replied_comment_id": 1
 }
 ```
 
-
 Example data to import:
-
-```
+```json
 [
     {
         "Message": "Halo doc",
@@ -1443,24 +1269,15 @@ Example data to import:
 ]
 ```
 
-
 ## Get Imported List
-
 verb:
-
-```
-GET /api/v2/rest/imports
-```
-
+`GET /api/v2/rest/imports`
 request:
-
-```
+```bash
 page [int] page number, optional
 ```
-
 response:
-
-```
+```json
 {
     "results": {
         "backup_histories": [
@@ -1480,25 +1297,21 @@ response:
 }
 ```
 
-
-
-
 # Webhooks
-
-Webhooks make it super easy to build on top of Qiscus SDK. They are user-defined callbacks. They are triggered by events -- in this case, messages from customers and businesses. When the event occurs, the webhook will make a http(s) call to the URI it’s configured to.
+Webhooks make it super easy to build on top of Qiscus SDK. They are
+user-defined callbacks. They are triggered by events -- in this case, messages
+from customers and businesses. When the event occurs, the webhook will
+make a http(s) call to the URI it’s configured to.
 
 ## on post message
+Webhooks on post message being triggered either from sdk client side or
+from REST API
 
-Webhooks on post message being triggered either from sdk client side or from REST API  
-
-```
 PROTOCOL : HTTPS
 VERB : POST
-```
 
 payload being send to your endpoint is below
-
-```
+```json
 {
     "type": "post_comment_mobile", // either type "post_comment_mobile" if from client side or "post_comment_rest" if from REST API
     "payload": {
@@ -1537,4 +1350,3 @@ payload being send to your endpoint is below
     }
 }
 ```
-
