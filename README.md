@@ -36,8 +36,6 @@ email [string]
 password [string password, optional] # password will be updated if user already exist
 username [string]
 avatar_url [string url, optional]
-device_token [string, optional]
-device_platform ["ios" or "android", optional]
 ```
 
 
@@ -753,7 +751,9 @@ request payload structure:
             "label": "button2",
             "type": "link",
             "payload": {
-                "url": "http://somewhere.com/button2?id=123"
+                "url": "http://somewhere.com/button2?id=123",
+                "method": "get",
+                "payload": null
             }
         }
     ]
@@ -781,7 +781,9 @@ response payload example:
             "label": "button2",
             "type": "link",
             "payload": {
-                "url": "http://somewhere.com/button2?id=123"
+                "url": "http://somewhere.com/button2?id=123",
+                "method": "get",
+                "payload": null
             }
         }
     ]
