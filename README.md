@@ -988,6 +988,265 @@ response:
 }
 ```
 
+
+## Broadcast Message
+
+verb:
+
+`POST /api/v2/rest/broadcast`
+
+
+request:
+
+```bash
+sender_email [string]
+emails[] [string email]
+message [string]
+type [string, default=text]
+payload [string json, optional, see payload definitions in post_comment]
+extras [string json, optional] must be valid json string or object
+```
+
+response:
+
+```
+{
+    "results": {
+        "comments": [
+            {
+                "comment_before_id": 914074,
+                "comment_before_id_str": "914074",
+                "disable_link_preview": false,
+                "email": "userid_853_6289876543211@kiwari-stag.com",
+                "extras": {},
+                "id": 914076,
+                "id_str": "914076",
+                "message": "this is broadcast messages",
+                "payload": null,
+                "room_id": 45487,
+                "room_id_str": "45487",
+                "target_email": "userid_882_628681258008@kiwari-stag.com",
+                "timestamp": "2017-11-08T09:48:31Z",
+                "topic_id": 45487,
+                "topic_id_str": "45487",
+                "type": "text",
+                "unique_temp_id": "1EjCqOZKCSxQUzF4k8Aw",
+                "unix_nano_timestamp": 1510134511822385000,
+                "unix_timestamp": 1510134511,
+                "user_avatar": {
+                    "avatar": {
+                        "url": "https://qiscuss3.s3.amazonaws.com/uploads/55c0c6ee486be6b686d52e5b9bbedbbf/2.png"
+                    }
+                },
+                "user_avatar_url": "https://qiscuss3.s3.amazonaws.com/uploads/55c0c6ee486be6b686d52e5b9bbedbbf/2.png",
+                "user_id": 87741,
+                "user_id_str": "87741",
+                "username": "Heru 3"
+            },
+            {
+                "comment_before_id": 914075,
+                "comment_before_id_str": "914075",
+                "disable_link_preview": false,
+                "email": "userid_853_6289876543211@kiwari-stag.com",
+                "extras": {},
+                "id": 914077,
+                "id_str": "914077",
+                "message": "this is broadcast messages",
+                "payload": null,
+                "room_id": 45489,
+                "room_id_str": "45489",
+                "target_email": "userid_927_62868125800@kiwari-stag.com",
+                "timestamp": "2017-11-08T09:48:31Z",
+                "topic_id": 45489,
+                "topic_id_str": "45489",
+                "type": "text",
+                "unique_temp_id": "2SPRZoxXU6mZVR0USaHH",
+                "unix_nano_timestamp": 1510134511946365000,
+                "unix_timestamp": 1510134511,
+                "user_avatar": {
+                    "avatar": {
+                        "url": "https://qiscuss3.s3.amazonaws.com/uploads/55c0c6ee486be6b686d52e5b9bbedbbf/2.png"
+                    }
+                },
+                "user_avatar_url": "https://qiscuss3.s3.amazonaws.com/uploads/55c0c6ee486be6b686d52e5b9bbedbbf/2.png",
+                "user_id": 87741,
+                "user_id_str": "87741",
+                "username": "Heru 3"
+            }
+        ]
+    },
+    "status": 200
+}
+```
+
+
+## Get User Profile
+
+`GET /api/v2/rest/user_profile`
+
+request:
+
+```bash
+user_email [string] required
+```
+
+
+response:
+
+```
+{
+    "status": 200,
+    "results": {
+        "user": {
+            "id": 1,
+            "email": "email@qiscus.com",
+            "username": "Johnny Cage",
+            "avatar": {
+                "avatar": {
+                    "url": "http://imagebucket.com/image.jpg"
+                }
+            },
+            "avatar_url": "https://myimagebucket.com/image.jpg",
+            "token": "abcde1234defgh",
+            "rtKey": "RT_KEY_HERE",
+            "pn_ios_configured": true,
+            "pn_android_configured": true
+        },
+    }
+}
+```
+
+
+## Update User Profile
+
+`POST /api/v2/rest/update_profile`
+
+
+request:
+
+```bash
+email [string, required] user email to update
+name [string, optional] new name for this user
+avatar_url [string, optional] new avatar url for this user
+```
+
+
+
+response:
+
+```
+{
+    "results": {
+        "user": {
+            "app": {
+                "code": "kiwari-prod",
+                "id": 8,
+                "id_str": "8",
+                "name": "Kiwari"
+            },
+            "avatar": {
+                "avatar": {
+                    "url": "https://google.com"
+                }
+            },
+            "avatar_url": "https://google.com",
+            "email": "userid_108_6285868231412@kiwari-prod.com",
+            "id": 144,
+            "id_str": "144",
+            "last_comment_id": 965413,
+            "last_comment_id_str": "965413",
+            "pn_android_configured": true,
+            "pn_ios_configured": true,
+            "rtKey": "",
+            "token": "8TLb1ECr5P50lUxTFQFE",
+            "username": "Yusuf"
+        }
+    },
+    "status": 200
+}
+```
+
+## Get Total Comments By Months
+
+verb :
+
+`POST /api/v2/rest/get_total_comments_by_month`
+
+request :
+
+```bash
+date [string date(yyyy-mm) | required]
+```
+
+response :
+
+```
+{
+    "results": {
+        "date": "04-2017",
+        "total": 544
+    },
+    "status": 200
+}
+```
+
+
+## Get User List
+
+verb :
+
+`POST /api/v2.1/rest/get_user_list`
+
+request :
+
+```bash
+page
+limit
+```
+response :
+
+```
+{
+    "results": {
+        "meta": {
+            "total_data": 2436,
+            "total_page": 121
+        },
+        "users": [
+            {
+                "avatar_url": "https://d1edrlpyc25xu0.cloudfront.net/kiwari-prod/image/upload/75r6s_jOHa/1507541871-avatar-mine.png",
+                "created_at": "2017-11-09T09:29:34.86378Z",
+                "email": "jambul21@mail.com",
+                "id": 212100,
+                "name": "fuuukaa",
+                "updated_at": "2017-11-09T09:29:34.86378Z",
+                "username": "fuuukaa"
+            },
+            {
+                "avatar_url": "https://d1edrlpyc25xu0.cloudfront.net/kiwari-prod/image/upload/75r6s_jOHa/1507541871-avatar-mine.png",
+                "created_at": "2017-11-09T09:29:09.608576Z",
+                "email": "jambul20@mail.com",
+                "id": 212099,
+                "name": "fuuukaa",
+                "updated_at": "2017-11-09T09:29:09.608576Z",
+                "username": "fuuukaa"
+            },
+            {
+                "avatar_url": "https://d1edrlpyc25xu0.cloudfront.net/kiwari-prod/image/upload/75r6s_jOHa/1507541871-avatar-mine.png",
+                "created_at": "2017-10-31T10:54:38.128502Z",
+                "email": "jambul12@mail.com",
+                "id": 212098,
+                "name": "fuuukaa",
+                "updated_at": "2017-10-31T10:54:38.128502Z",
+                "username": "fuuukaa"
+            }
+        ]
+    },
+    "status": 200
+}
+```
+
+
 # Data Backup and Import
 
 ## Create or Request Backup
