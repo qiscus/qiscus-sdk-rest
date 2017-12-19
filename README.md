@@ -1128,6 +1128,7 @@ request:
 email [string, required] user email to update
 name [string, optional] new name for this user
 avatar_url [string, optional] new avatar url for this user
+password [string optional] if empty will use old password (no change), if not exist, it will replace the input value as new password
 ```
 
 
