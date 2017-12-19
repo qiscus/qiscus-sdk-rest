@@ -57,37 +57,6 @@ response :
 }
 ```
 
-## Get User Profile
-
-You can use this endpoint to check user profile
-
-verb :
-
-`GET /api/v2/rest/user_profile?user_email={{user_id}}`
-
-request :
-
-```bash
-user_email [string]
-```
-
-response :
-```json
-{
-    "status": 200,
-    "results": {
-        "user": {
-            "id": 1,
-            "email": "email@qiscus.com",
-            "username": "Johnny Cage",
-            "avatar_url": "https://myimagebucket.com/image.jpg",
-            "token": "abcde1234defgh"
-        },
-    }
-}
-```
-
-
 ## Reset User Authentication Token
 
 In case your user token is compromised, you can reset their token at any time. This make previous token no longer valid.
