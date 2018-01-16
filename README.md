@@ -7,7 +7,7 @@
 
 You can see Postman collections of Qiscus REST APIs here :
 
-[Qiscus REST API Postman's Collections](https://documenter.getpostman.com/view/484596/qiscus-sdk-postman-collection/6tXb66L#07399c07-4283-3140-ec89-55aea88fe7ac)
+[Qiscus REST API Postman's Collections](https://documenter.getpostman.com/view/3356455/qiscus-sdk-postman-collection/7TGiDia)
 
 ## Authentication
 
