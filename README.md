@@ -553,6 +553,7 @@ example payload structure:
     "buttons": [
         {
             "label": "button1",
+            "postback_text": "button1",
             "type": "postback",
             "payload": {
                 "url": "http://somewhere.com/button1",
@@ -709,6 +710,7 @@ request payload structure:
     "buttons": [
         {
             "label": "button1",
+            "postback_text": "button1",
             "type": "postback",
             "payload": {
                 "url": "http://somewhere.com/button1",
@@ -739,6 +741,7 @@ response payload example:
     "buttons": [
         {
             "label": "button1",
+            "postback_text": "button1",
             "type": "postback",
             "payload": {
                 "url": "http://somewhere.com/button1",
