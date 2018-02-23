@@ -619,7 +619,7 @@ done using `POST /api/v2/rest/post_system_event_message` endpoint.
 For each sub-type of system_event, there are different payload
 structure. This is example of payload response:
 
-**sub type: create_room**
+***sub type: create_room***
 
 example response payload:
 
@@ -635,7 +635,7 @@ payload: {
 ...
 ```
 
-**_sub type add_member_**
+***sub type add_member***
 
 example response payload:
 
@@ -652,7 +652,7 @@ payload: {
 ...
 ```
 
-**_sub type join_room_**
+***sub type join_room***
 
 example response payload:
 
@@ -668,7 +668,7 @@ payload: {
 ...
 ```
 
-**_sub type remove_member_**
+***sub type remove_member***
 
 example response payload:
 
@@ -685,7 +685,7 @@ payload: {
 ...
 ```
 
-**_sub type left_room_**
+***sub type left_room***
 
 example response payload:
 
@@ -701,7 +701,7 @@ payload: {
 ...
 ```
 
-**_sub type change_room_name_**
+***sub type change_room_name***
 
 example response payload:
 
@@ -717,7 +717,7 @@ payload: {
 ...
 ```
 
-**_sub type change_room_avatar_**
+***sub type change_room_avatar***
 
 example response payload:
 
@@ -732,7 +732,7 @@ payload: {
 ...
 ```
 
-**_sub type custom_**
+***sub type custom***
 
 will post message to room with System User as a sender and payload is defined
 by you as a client. Example, if you post payload as:
