@@ -21,42 +21,28 @@ headers :
 QISCUS_SDK_SECRET: 8355105e6171795fca176366e0c16f22
 ```
 
-## Login or Register
+### Get User Authentication Token
+In case you need user session token is compromised, you can get it by calling get_user_token API.
 
-You can use this endpoint to create new user if it does not exist yet, or you can use this endpoint to update data of the user if they already exists
+verb: `GET /api/v2.1/rest/get_user_token`
 
-verb :
-`POST /api/v2/rest/login_or_register`
-
-request :
-
+request:
 ```bash
-email [string]
-password [string password, optional] # password will be updated if user already exist
-username [string]
-avatar_url [string url, optional]
+user_id [string]
 ```
 
-Note : `password` is optional, it will generate random string on the backend if you dont pass it during `User` creation through this API. However, please note for those users already created you can not use this API `login_or_register` without passing password value
-
-response :
-
+response:
 ```json
 {
-  "status": 200,
-  "results": {
-    "user": {
-      "id": 1,
-      "email": "email@qiscus.com",
-      "username": "Johnny Cage",
-      "avatar_url": "https://myimagebucket.com/image.jpg",
-      "token": "abcde1234defgh"
-    }
-  }
+    "results": {
+        "token": "abcdef09876"
+    },
+    "status": 200
 }
+
 ```
 
-## Reset User Authentication Token
+### Reset User Authentication Token
 
 In case your user token is compromised, you can reset their token at any time. This make previous token no longer valid.
 
@@ -95,12 +81,491 @@ response:
   "status": 200
 }
 ```
+## Users
+You can use this API for managing various behaviour of users
 
-## Get User Room List
+### Login or Register
+
+You can use this endpoint to create new user if it does not exist yet, or you can use this endpoint to update data of the user if they already exists
+
+verb :
+`POST /api/v2/rest/login_or_register`
+
+request :
+
+```bash
+email [string]
+password [string password, optional] # password will be updated if user already exist
+username [string]
+avatar_url [string url, optional]
+```
+
+Note : `password` is optional, it will generate random string on the backend if you dont pass it during `User` creation through this API. However, please note for those users already created you can not use this API `login_or_register` without passing password value
+
+response :
+
+```json
+{
+  "status": 200,
+  "results": {
+    "user": {
+      "id": 1,
+      "email": "email@qiscus.com",
+      "username": "Johnny Cage",
+      "avatar_url": "https://myimagebucket.com/image.jpg",
+      "token": "abcde1234defgh"
+    }
+  }
+}
+```
+
+### Update User Profile
+
+`POST /api/v2/rest/update_profile`
+
+request:
+
+```bash
+email [string, required] user email to update
+name [string, optional] new name for this user
+avatar_url [string, optional] new avatar url for this user
+password [string optional] if empty will use old password (no change), if not exist, it will replace the input value as new password
+```
+
+response:
+
+```json
+{
+    "results": {
+        "user": {
+            "app": {
+                "code": "kiwari-prod",
+                "id": 8,
+                "id_str": "8",
+                "name": "Kiwari"
+            },
+            "avatar": {
+                "avatar": {
+                    "url": "https://google.com"
+                }
+            },
+            "avatar_url": "https://google.com",
+            "email": "userid_108_6285868231412@kiwari-prod.com",
+            "id": 144,
+            "id_str": "144",
+            "last_comment_id": 965413,
+            "last_comment_id_str": "965413",
+            "pn_android_configured": true,
+            "pn_ios_configured": true,
+            "rtKey": "",
+            "token": "8TLb1ECr5P50lUxTFQFE",
+            "username": "Yusuf"
+        }
+    },
+    "status": 200
+}
+```
+
+### Get User Profile
+You can get user profile by using this API
+
+verb:
+`GET /api/v2.1/rest/user_profile`
+
+request:
+```bash
+user_id [string] required
+```
+
+response:
+```json
+{
+    "results": {
+        "user": {
+            "user_id": "user@email.com",
+            "username": "Johnny Cage",
+            "avatar_url": "https://myimagebucket.com/image.jpg"
+        },
+    },
+    "status": 200
+}
+```
+
+### Get Unread Users
+This intended to get user_id that have unread messages
+
+verb: `GET /api/v2.1/rest/get_unread_users`
+
+request:
+```bash
+page 
+limit - default is 100 , the value is beetween 1-100, otherwise will override to 100
+``` 
+
+response:
+```json
+{
+    "results": {
+        "user_ids": [
+            "userid_1",
+            "userid_2"
+        ]
+    },
+    "status": 200
+}
+```
+### Get All Users
+You can get all registered users by calling this API
+
+verb:
+`GET /api/v2.1/rest/get_user_list`
+
+request:
+```bash
+page [int]
+limit [int]
+order_query [string] example: created_at desc nulls last
+```
+
+response:
+```json
+
+{
+    "results": {
+        "meta": {
+            "total_data": 3147,
+            "total_page": 1573
+        },
+        "users": [
+            {
+                "avatar_url": "https://qiscuss3.s3.amazonaws.com/uploads/55c0c6ee486be6b686d52e5b9bbedbbf/2.png",
+                "created_at": "2017-10-09T06:47:00.004482Z",
+                "email": "\"\"",
+                "id": 185284,
+                "name": "A. Athaullah",
+                "updated_at": "2017-10-09T06:47:00.004482Z",
+                "username": "A. Athaullah"
+            },
+            {
+                "avatar_url": "https://qiscuss3.s3.amazonaws.com/uploads/55c0c6ee486be6b686d52e5b9bbedbbf/2.png",
+                "created_at": "2017-09-18T04:15:04Z",
+                "email": "081111111111@qiscuswa.com",
+                "id": 178,
+                "name": "iPhone test User",
+                "updated_at": "2017-09-18T04:15:04Z",
+                "username": "iPhone test User"
+            }
+        ]
+    },
+    "status": 200
+}
+```
+
+## Room
+You can use this API for managing various behaviour of room
+
+### Create room
+
+verb:
+`POST /api/v2/rest/create_room`
+
+request:
+
+```bash
+name [string]
+participants[] [array of string email]
+creator [string email]
+avatar_url [string] optional
+```
+
+response:
+
+```json
+{
+  "results": {
+    "creator": "abc@outlook.com",
+    "participants": ["abc@outlook.com", "kotak@outlook.com"],
+    "room_id": 16,
+    "room_name": "gege",
+    "room_type": "group"
+  },
+  "status": 200
+}
+```
+
+### Update Room
+
+verb:
+`POST /api/v2/rest/update_room`
+
+request:
+
+```bash
+user_email [string required] must one of user participant
+room_id [string required] must be group room
+room_name [string optional]
+room_avatar_url [string optional]
+options [string optional]
+```
+
+response:
+
+```json
+{
+  "results": {
+    "changed": true,
+    "room": {
+      "chat_type": "group", // always group
+      "id": 18,
+      "last_comment_id": 0,
+      "last_comment_message": "",
+      "last_topic_id": 0,
+      "avatar_url": "http://avatar.jpg",
+      "options": "",
+      "participants": [
+        {
+          "avatar_url": "https://qiscuss3.s3.amazonaws.com/uploads/55c0c6ee486be6b686d52e5b9bbedbbf/2.png",
+          "email": "asasmoyo@outlook.com",
+          "username": "asasmoyo",
+          "last_comment_read_id": 0,
+          "last_comment_received_id": 0
+        },
+        {
+          "avatar_url": "https://qiscuss3.s3.amazonaws.com/uploads/55c0c6ee486be6b686d52e5b9bbedbbf/2.png",
+          "email": "kotak@outlook.com",
+          "username": "kotak",
+          "last_comment_read_id": 0,
+          "last_comment_received_id": 0
+        }
+      ],
+      "room_name": "uwooo"
+    },
+    "comments": [
+        {
+        "id": 985,
+        "comment_before_id": 984,
+        "message": "Hello Post 2",
+        "type": "text"
+        "payload": {},
+        "disable_link_preview": false,
+        "email": "f1@gmail.com",
+        "username": "f1",
+        "user_avatar": {
+            "avatar": {
+                "url": "http://imagebucket.com/image.jpg"
+            }
+        },
+        "user_avatar_url": "http://imagebucket.com/image.jpg",
+        "timestamp": "2016-09-06T16:18:50+00:00",
+        "unix_timestamp": 1489999170,
+        "unique_temp_id": "CanBeAnything1234321"
+      },
+      {
+        "id": 985,
+        "comment_before_id": 984,
+        "message": "Hello Post 2",
+        "type": "text"
+        "payload": {},
+        "disable_link_preview": false,
+        "username": "f1",
+        "email": "f1@gmail.com",
+        "user_avatar": {
+            "avatar": {
+                "url": "http://imagebucket.com/image.jpg"
+            }
+        },
+        "user_avatar_url": "http://imagebucket.com/image.jpg",
+        "timestamp": "2016-09-06T16:18:50+00:00",
+        "unix_timestamp": 1489999170,
+        "unique_temp_id": "CanBeAnything1234321"
+      }
+    ]
+  },
+  "status": 200
+}
+```
+
+### Get or create room with target
+
+verb:
+`GET /api/v2/rest/get_or_create_room_with_target`
+
+request:
+
+```bash
+emails[] [array of string] # must contains 2 emails
+```
+
+response:
+
+```json
+{
+  "results": {
+    "comments": [
+      {
+        "comment_before_id": 124973,
+        "disable_link_preview": false,
+        "email": "abc@outlook.com",
+        "id": 124974,
+        "message": "testingasdad asdas dasd",
+        "timestamp": "2017-02-07T19:01:00Z",
+        "unique_temp_id": "pyRIKY4reRXlU4Sp6r97",
+        "user_avatar_url":
+          "https://res.cloudinary.com/drbmkdgd2/image/fetch/http://res.cloudinary.com/qiscus/image/upload/v1486117460/kiwari-prod_user_id_95/vqgq5pwx1y3mafxsezmb.jpg",
+        "username": "abc"
+      },
+      {
+        "comment_before_id": 124972,
+        "disable_link_preview": false,
+        "email": "abc@outlook.com",
+        "id": 124973,
+        "message": "testingasdad asdas dasd",
+        "timestamp": "2017-02-07T19:00:58Z",
+        "unique_temp_id": "K5E6HmKQJQwSovEkFhHf",
+        "user_avatar_url":
+          "https://res.cloudinary.com/drbmkdgd2/image/fetch/http://res.cloudinary.com/qiscus/image/upload/v1486117460/kiwari-prod_user_id_95/vqgq5pwx1y3mafxsezmb.jpg",
+        "username": "abc"
+      }
+    ],
+    "room": {
+      "avatar_url": "",
+      "chat_type": "single",
+      "id": 234,
+      "last_comment_id": 124974,
+      "last_comment_message": "testingasdad asdas dasd",
+      "last_topic_id": 234,
+      "options": null,
+      "participants": [
+        {
+          "avatar_url":
+            "https://res.cloudinary.com/drbmkdgd2/image/fetch/http://res.cloudinary.com/qiscus/image/upload/v1486117460/kiwari-prod_user_id_95/vqgq5pwx1y3mafxsezmb.jpg",
+          "email": "abc@outlook.com",
+          "username": "abc"
+        },
+        {
+          "avatar_url":
+            "https://qiscuss3.s3.amazonaws.com/uploads/55c0c6ee486be6b686d52e5b9bbedbbf/2.png",
+          "email": "kotak@outlook.com",
+          "username": "kotak"
+        }
+      ],
+      "room_name": "abc@outlook.com kotak@outlook.com"
+    }
+  },
+  "status": 200
+}
+```
+
+### Get rooms info
+
+verb:
+`POST /api/v2/rest/get_rooms_info`
+
+request:
+
+```bash
+room_id[] [array of string]
+user_email [string email]
+show_participants [boolean true or false, default is false]
+```
+
+response:
+
+```json
+{
+  "results": {
+    "rooms_info": [
+      {
+        "last_comment_id": 0,
+        "last_comment_message": "",
+        "last_comment_timestamp": "0001-01-01T00:00:00Z",
+        "room_id": 13,
+        "room_name": "abc@outlook.com kotak1@outlook.com",
+        "room_type": "single",
+        "unread_count": 123
+      },
+      {
+        "last_comment_id": 0,
+        "last_comment_message": "",
+        "last_comment_timestamp": "0001-01-01T00:00:00Z",
+        "room_id": 14,
+        "room_name": "abc@outlook.com kotak2@outlook.com",
+        "room_type": "single",
+        "unread_count": 123
+      }
+    ]
+  },
+  "status": 200
+}
+```
+
+### Add room participants
+
+verb:
+`post /api/v2/rest/add_room_participants`
+
+request:
+
+```bash
+room_id [string]
+emails[] [array of string emails]
+```
+
+response:
+
+```json
+{
+  "results": {
+    "creator": "abc@outlook.com",
+    # updated participants
+    "participants": [
+      "abc@outlook.com",
+      "kotak@outlook.com"
+    ],
+    "room_id": 16,
+    "room_name": "gege",
+    "room_type": "group"
+  },
+  "status": 200
+}
+```
+
+### Remove room participants
+
+verb:
+`post /api/v2/rest/remove_room_participants`
+
+request:
+
+```bash
+room_id [string]
+emails [array of string emails]
+```
+
+response:
+
+```json
+{
+  "results": {
+    "creator": "abc@outlook.com",
+    # updated participants
+    "participants": [
+      "abc@outlook.com",
+      "kotak@outlook.com"
+    ],
+    "room_id": 16,
+    "room_name": "gege",
+    "room_type": "group"
+  },
+  "status": 200
+}
+```
+
+### Get User Room List
 
 Will show maximum 20 data per page. If page parameter empty, this API will return all conversations (max 100)
 
-Verb:
+verb:
 `GET /api/v2/rest/get_user_rooms`
 
 request:
@@ -205,304 +670,10 @@ response when **show_participants** is true:
 }
 ```
 
-## Create room
+## Comment
+You can use this API for managing various behaviour of comment
 
-verb:
-`POST /api/v2/rest/create_room`
-
-request:
-
-```bash
-name [string]
-participants[] [array of string email]
-creator [string email]
-avatar_url [string] optional
-```
-
-response:
-
-```json
-{
-  "results": {
-    "creator": "abc@outlook.com",
-    "participants": ["abc@outlook.com", "kotak@outlook.com"],
-    "room_id": 16,
-    "room_name": "gege",
-    "room_type": "group"
-  },
-  "status": 200
-}
-```
-
-## Update Room
-
-verb:
-`POST /api/v2/rest/update_room`
-
-request:
-
-```bash
-user_email [string required] must one of user participant
-room_id [string required] must be group room
-room_name [string optional]
-room_avatar_url [string optional]
-options [string optional]
-```
-
-response:
-
-```json
-{
-  "results": {
-    "changed": true,
-    "room": {
-      "chat_type": "group", // always group
-      "id": 18,
-      "last_comment_id": 0,
-      "last_comment_message": "",
-      "last_topic_id": 0,
-      "avatar_url": "http://avatar.jpg",
-      "options": "",
-      "participants": [
-        {
-          "avatar_url": "https://qiscuss3.s3.amazonaws.com/uploads/55c0c6ee486be6b686d52e5b9bbedbbf/2.png",
-          "email": "asasmoyo@outlook.com",
-          "username": "asasmoyo",
-          "last_comment_read_id": 0,
-          "last_comment_received_id": 0
-        },
-        {
-          "avatar_url": "https://qiscuss3.s3.amazonaws.com/uploads/55c0c6ee486be6b686d52e5b9bbedbbf/2.png",
-          "email": "kotak@outlook.com",
-          "username": "kotak",
-          "last_comment_read_id": 0,
-          "last_comment_received_id": 0
-        }
-      ],
-      "room_name": "uwooo"
-    },
-    "comments": [
-        {
-        "id": 985,
-        "comment_before_id": 984,
-        "message": "Hello Post 2",
-        "type": "text"
-        "payload": {},
-        "disable_link_preview": false,
-        "email": "f1@gmail.com",
-        "username": "f1",
-        "user_avatar": {
-            "avatar": {
-                "url": "http://imagebucket.com/image.jpg"
-            }
-        },
-        "user_avatar_url": "http://imagebucket.com/image.jpg",
-        "timestamp": "2016-09-06T16:18:50+00:00",
-        "unix_timestamp": 1489999170,
-        "unique_temp_id": "CanBeAnything1234321"
-      },
-      {
-        "id": 985,
-        "comment_before_id": 984,
-        "message": "Hello Post 2",
-        "type": "text"
-        "payload": {},
-        "disable_link_preview": false,
-        "username": "f1",
-        "email": "f1@gmail.com",
-        "user_avatar": {
-            "avatar": {
-                "url": "http://imagebucket.com/image.jpg"
-            }
-        },
-        "user_avatar_url": "http://imagebucket.com/image.jpg",
-        "timestamp": "2016-09-06T16:18:50+00:00",
-        "unix_timestamp": 1489999170,
-        "unique_temp_id": "CanBeAnything1234321"
-      }
-    ]
-  },
-  "status": 200
-}
-```
-
-## Get or create room with target
-
-verb:
-`GET /api/v2/rest/get_or_create_room_with_target`
-
-request:
-
-```bash
-emails[] [array of string] # must contains 2 emails
-```
-
-response:
-
-```json
-{
-  "results": {
-    "comments": [
-      {
-        "comment_before_id": 124973,
-        "disable_link_preview": false,
-        "email": "abc@outlook.com",
-        "id": 124974,
-        "message": "testingasdad asdas dasd",
-        "timestamp": "2017-02-07T19:01:00Z",
-        "unique_temp_id": "pyRIKY4reRXlU4Sp6r97",
-        "user_avatar_url":
-          "https://res.cloudinary.com/drbmkdgd2/image/fetch/http://res.cloudinary.com/qiscus/image/upload/v1486117460/kiwari-prod_user_id_95/vqgq5pwx1y3mafxsezmb.jpg",
-        "username": "abc"
-      },
-      {
-        "comment_before_id": 124972,
-        "disable_link_preview": false,
-        "email": "abc@outlook.com",
-        "id": 124973,
-        "message": "testingasdad asdas dasd",
-        "timestamp": "2017-02-07T19:00:58Z",
-        "unique_temp_id": "K5E6HmKQJQwSovEkFhHf",
-        "user_avatar_url":
-          "https://res.cloudinary.com/drbmkdgd2/image/fetch/http://res.cloudinary.com/qiscus/image/upload/v1486117460/kiwari-prod_user_id_95/vqgq5pwx1y3mafxsezmb.jpg",
-        "username": "abc"
-      }
-    ],
-    "room": {
-      "avatar_url": "",
-      "chat_type": "single",
-      "id": 234,
-      "last_comment_id": 124974,
-      "last_comment_message": "testingasdad asdas dasd",
-      "last_topic_id": 234,
-      "options": null,
-      "participants": [
-        {
-          "avatar_url":
-            "https://res.cloudinary.com/drbmkdgd2/image/fetch/http://res.cloudinary.com/qiscus/image/upload/v1486117460/kiwari-prod_user_id_95/vqgq5pwx1y3mafxsezmb.jpg",
-          "email": "abc@outlook.com",
-          "username": "abc"
-        },
-        {
-          "avatar_url":
-            "https://qiscuss3.s3.amazonaws.com/uploads/55c0c6ee486be6b686d52e5b9bbedbbf/2.png",
-          "email": "kotak@outlook.com",
-          "username": "kotak"
-        }
-      ],
-      "room_name": "abc@outlook.com kotak@outlook.com"
-    }
-  },
-  "status": 200
-}
-```
-
-## Get rooms info
-
-verb:
-`POST /api/v2/rest/get_rooms_info`
-
-request:
-
-```bash
-room_id[] [array of string]
-user_email [string email]
-show_participants [boolean true or false, default is false]
-```
-
-response:
-
-```json
-{
-  "results": {
-    "rooms_info": [
-      {
-        "last_comment_id": 0,
-        "last_comment_message": "",
-        "last_comment_timestamp": "0001-01-01T00:00:00Z",
-        "room_id": 13,
-        "room_name": "abc@outlook.com kotak1@outlook.com",
-        "room_type": "single",
-        "unread_count": 123
-      },
-      {
-        "last_comment_id": 0,
-        "last_comment_message": "",
-        "last_comment_timestamp": "0001-01-01T00:00:00Z",
-        "room_id": 14,
-        "room_name": "abc@outlook.com kotak2@outlook.com",
-        "room_type": "single",
-        "unread_count": 123
-      }
-    ]
-  },
-  "status": 200
-}
-```
-
-## Add room participants
-
-verb:
-`post /api/v2/rest/add_room_participants`
-
-request:
-
-```bash
-room_id [string]
-emails[] [array of string emails]
-```
-
-response:
-
-```json
-{
-  "results": {
-    "creator": "abc@outlook.com",
-    # updated participants
-    "participants": [
-      "abc@outlook.com",
-      "kotak@outlook.com"
-    ],
-    "room_id": 16,
-    "room_name": "gege",
-    "room_type": "group"
-  },
-  "status": 200
-}
-```
-
-## Remove room participants
-
-verb:
-`post /api/v2/rest/remove_room_participants`
-
-request:
-
-```bash
-room_id [string]
-emails [array of string emails]
-```
-
-response:
-
-```json
-{
-  "results": {
-    "creator": "abc@outlook.com",
-    # updated participants
-    "participants": [
-      "abc@outlook.com",
-      "kotak@outlook.com"
-    ],
-    "room_id": 16,
-    "room_name": "gege",
-    "room_type": "group"
-  },
-  "status": 200
-}
-```
-
-## Post comment
+### Post comment
 
 verb:
 `post /api/v2/rest/post_comment`
@@ -1137,7 +1308,7 @@ Example request payload:
 }
 ```
 
-## Load comments
+### Load comments
 
 verb:
 `get /api/v2/rest/load_comments`
@@ -1190,7 +1361,7 @@ response:
 }
 ```
 
-## Post System Event Message
+### Post System Event Message
 
 To send event system message such as creating group, join room, remove member, etc
 verb:
@@ -1248,7 +1419,7 @@ Will return last inserted comment and object id when type is add_member or remov
 }
 ```
 
-## Search Messages
+### Search Messages
 
 Search results will get last 100 messages on the query keyword.
 verb:
@@ -1299,7 +1470,7 @@ response:
 }
 ```
 
-## Broadcast Message
+### Broadcast Message
 
 verb:
 
@@ -1388,89 +1559,7 @@ response:
 }
 ```
 
-## Get User Profile
-
-`GET /api/v2/rest/user_profile`
-
-request:
-
-```bash
-user_email [string] required
-```
-
-response:
-
-```json
-{
-    "status": 200,
-    "results": {
-        "user": {
-            "id": 1,
-            "email": "email@qiscus.com",
-            "username": "Johnny Cage",
-            "avatar": {
-                "avatar": {
-                    "url": "http://imagebucket.com/image.jpg"
-                }
-            },
-            "avatar_url": "https://myimagebucket.com/image.jpg",
-            "token": "abcde1234defgh",
-            "rtKey": "RT_KEY_HERE",
-            "pn_ios_configured": true,
-            "pn_android_configured": true
-        },
-    }
-}
-```
-
-## Update User Profile
-
-`POST /api/v2/rest/update_profile`
-
-request:
-
-```bash
-email [string, required] user email to update
-name [string, optional] new name for this user
-avatar_url [string, optional] new avatar url for this user
-password [string optional] if empty will use old password (no change), if not exist, it will replace the input value as new password
-```
-
-response:
-
-```json
-{
-    "results": {
-        "user": {
-            "app": {
-                "code": "kiwari-prod",
-                "id": 8,
-                "id_str": "8",
-                "name": "Kiwari"
-            },
-            "avatar": {
-                "avatar": {
-                    "url": "https://google.com"
-                }
-            },
-            "avatar_url": "https://google.com",
-            "email": "userid_108_6285868231412@kiwari-prod.com",
-            "id": 144,
-            "id_str": "144",
-            "last_comment_id": 965413,
-            "last_comment_id_str": "965413",
-            "pn_android_configured": true,
-            "pn_ios_configured": true,
-            "rtKey": "",
-            "token": "8TLb1ECr5P50lUxTFQFE",
-            "username": "Yusuf"
-        }
-    },
-    "status": 200
-}
-```
-
-## Get Total Comments By Months
+### Get Total Comments By Months
 
 verb :
 
@@ -1494,65 +1583,9 @@ response :
 }
 ```
 
-## Get User List
+## Data Backup and Import
 
-verb :
-
-`POST /api/v2.1/rest/get_user_list`
-
-request :
-
-```bash
-page
-limit
-```
-
-response :
-
-```json
-{
-    "results": {
-        "meta": {
-            "total_data": 2436,
-            "total_page": 121
-        },
-        "users": [
-            {
-                "avatar_url": "https://d1edrlpyc25xu0.cloudfront.net/kiwari-prod/image/upload/75r6s_jOHa/1507541871-avatar-mine.png",
-                "created_at": "2017-11-09T09:29:34.86378Z",
-                "email": "jambul21@mail.com",
-                "id": 212100,
-                "name": "fuuukaa",
-                "updated_at": "2017-11-09T09:29:34.86378Z",
-                "username": "fuuukaa"
-            },
-            {
-                "avatar_url": "https://d1edrlpyc25xu0.cloudfront.net/kiwari-prod/image/upload/75r6s_jOHa/1507541871-avatar-mine.png",
-                "created_at": "2017-11-09T09:29:09.608576Z",
-                "email": "jambul20@mail.com",
-                "id": 212099,
-                "name": "fuuukaa",
-                "updated_at": "2017-11-09T09:29:09.608576Z",
-                "username": "fuuukaa"
-            },
-            {
-                "avatar_url": "https://d1edrlpyc25xu0.cloudfront.net/kiwari-prod/image/upload/75r6s_jOHa/1507541871-avatar-mine.png",
-                "created_at": "2017-10-31T10:54:38.128502Z",
-                "email": "jambul12@mail.com",
-                "id": 212098,
-                "name": "fuuukaa",
-                "updated_at": "2017-10-31T10:54:38.128502Z",
-                "username": "fuuukaa"
-            }
-        ]
-    },
-    "status": 200
-}
-```
-
-# Data Backup and Import
-
-## Create or Request Backup
+### Create or Request Backup
 
 description: will request a backup as json
 verb:
@@ -1586,7 +1619,7 @@ response:
 }
 ```
 
-## Get List of Backup
+### Get List of Backup
 
 verb:
 `GET /api/v2/rest/exports`
@@ -1623,7 +1656,7 @@ will return maximum 20 rows of recent backup
 }
 ```
 
-## Get Backup By Id
+### Get Backup By Id
 
 verb:
 `GET /api/v2/rest/exports/:backup_unique_id`
@@ -1651,7 +1684,7 @@ response:
 }
 ```
 
-## Delete Backup By Id
+### Delete Backup By Id
 
 verb:
 `DELETE /api/v2/rest/exports/:backup_unique_id`
@@ -1681,7 +1714,7 @@ response:
 }
 ```
 
-## Make an Import
+### Make an Import
 
 verb:
 `POST /api/v2/rest/imports`
@@ -1848,7 +1881,7 @@ Example data to import:
 ]
 ```
 
-## Get Imported List
+### Get Imported List
 
 verb:
 `GET /api/v2/rest/imports`
@@ -1880,14 +1913,14 @@ response:
 }
 ```
 
-# Webhooks
+## Webhooks
 
 Webhooks make it super easy to build on top of Qiscus SDK. They are
 user-defined callbacks. They are triggered by events -- in this case, messages
 from customers and businesses. When the event occurs, the webhook will
 make a http(s) call to the URI it’s configured to.
 
-## on post message
+### On Post Message
 
 Webhooks on post message being triggered either from sdk client side or
 from REST API
