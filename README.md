@@ -200,6 +200,8 @@ request:
 ```bash
 page 
 limit - default is 100 , the value is beetween 1-100, otherwise will override to 100
+start_time  [string] in format "YYYY-MM-DD hh:mm:ss"
+end_time    [string] in format "YYYY-MM-DD hh:mm:ss"
 ``` 
 
 response:
@@ -260,6 +262,44 @@ response:
     "status": 200
 }
 ```
+
+
+### Get User Unread Count
+
+You can get user unread count of the users
+
+verb :
+
+`GET /api/v2/rest/get_user_unread_count`
+
+request :
+```bash
+user_ids    [array of string] *required*
+start_time  [string] in format "YYYY-MM-DD hh:mm:ss"
+end_time    [string] in format "YYYY-MM-DD hh:mm:ss"
+```
+
+response :
+
+```
+{
+    "results": {
+       "user_unread_count": [
+            {
+                "unread_count": 14,
+                "user_id": "user1@qiscus.com"
+            },
+            {
+                "unread_count": 71,
+                "user_id": "user2@qiscus.com"
+            }
+        ]
+    },
+    "status": 200
+}
+```
+
+
 
 ## Room
 You can use this API for managing various behaviour of room
