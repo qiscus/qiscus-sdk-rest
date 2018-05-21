@@ -30,7 +30,7 @@ request example of post comment with default type (text) :
 response :
 
 ```json
-{{
+{
   "results": {
     "comment": {
       "message": "this is new message",
