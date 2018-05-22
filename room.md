@@ -247,7 +247,6 @@ response when **show_participants** is false:
 
 ## Get Unread Count in Rooms
 
-
 verb:
 `GET /api/v2.1/rest/get_unread_count`
 
