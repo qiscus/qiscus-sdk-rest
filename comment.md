@@ -1,5 +1,5 @@
 # Comment
-You can use this API for managing various behaviour of comment
+You can use this API for managing various behaviour of comment.
 
 ## Post comment
 
