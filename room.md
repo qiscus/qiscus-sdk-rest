@@ -279,3 +279,35 @@ response:
 }
 
 ```
+
+## Get or Create Channel
+
+
+verb:
+`GET /api/v2.1/rest/get_or_create_channel`
+
+request:
+
+```bash
+unique_id [string, required]
+participants[] [array of string, required]
+```
+
+response:
+
+```json
+{
+  "results": {
+    "changed": true,
+    "room": {
+      "room_avatar_url": "",
+      "room_channel_id": "test123",
+      "room_id": "787233",
+      "room_name": "test123",
+      "room_options": "{}",
+      "room_type": "group"
+    }
+  },
+  "status": 200
+}
+```
