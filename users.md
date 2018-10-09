@@ -1,7 +1,7 @@
 # Users
 You can use this API for managing various behaviour of users
 
-## Login or Register
+## Login or Register & Update Profile
 
 You can use this endpoint to create new user if it does not exist yet, or you can use this endpoint to update data of the user if they already exists
 
