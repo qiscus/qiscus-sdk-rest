@@ -9,4 +9,4 @@ Our REST API using your `app_id` as subdomain on qiscus.com, means all your API 
 
 You can see Postman collections of Qiscus REST APIs here :
 
-[Qiscus REST API Postman's Collections](https://documenter.getpostman.com/view/3537859/qiscus-sdk-postman-collection-21/RVnVF1Ep)
+[Qiscus REST API Postman's Collections](https://documenter.getpostman.com/view/3537859/RVnVF1Ep#0cab9deb-e8eb-aae2-296c-333c8d0e776f)
