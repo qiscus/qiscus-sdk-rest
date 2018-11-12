@@ -197,6 +197,43 @@ response:
 }
 ```
 
+## Get Room Participant
+Will show list of participants in certain room
+
+verb:
+`GET /api/v2.1/rest/get_room_participants`
+
+request:
+```bash
+room_id [string] required
+page [int] number of page, optional
+limit [int] show n data
+```
+
+response:
+```json
+{
+    "results": {
+        "participants": [
+            {
+                "avatar_url": "https://d1edrlpyc25xu0.cloudfront.net/kiwari-prod/image/upload/0AlS8O2rr_/1507606591-  Lina_icon.png",
+                "extras": {},
+                "user_id": "guest2@qiscus.com",
+                "username": "Qiscus Guest2"
+            },
+            {
+                "avatar_url": "https://d1edrlpyc25xu0.cloudfront.net/kiwari-prod/image/upload/75r6s_jOHa/1507541871-avatar-mine.png",
+                "extras": {},
+                "user_id": "guest@qiscus.com",
+                "username": "Qiscus Demo"
+            }
+        ]
+    },
+    "status": 200
+}
+
+```
+
 ## Get User Room List
 
 Will show maximum 20 data per page. If page parameter empty, this API will return all conversations (max 100)
