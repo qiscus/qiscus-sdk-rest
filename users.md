@@ -11,11 +11,11 @@ verb :
 request :
 
 ```bash
-*user_id* [string]
-*password* [string password, optional] # if password is provided and user exists, the user's password will be updated
-*username* [string]
-*avatar_url* [string url, optional]
-*extras* [JSONstring, optional] or valid JSON object
+user_id [string]
+password [string password, optional] # if password is provided and user exists, the user's password will be updated
+username [string]
+avatar_url [string url, optional]
+extras [JSONstring, optional] or valid JSON object
 ```
 
 Note : `password` is optional, it will generate random string on the backend if you dont pass it during `User` creation through this API. However, please note for those users already created you can not use this API `login_or_register` without passing password value
