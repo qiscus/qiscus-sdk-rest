@@ -3,7 +3,7 @@ You can use this API for managing various behaviour of users
 
 ## Login or Register & Update Profile
 
-You can use this endpoint to create new user if it does not exist yet, or you can use this endpoint to update data of the user if they already exists
+You can use this endpoint to create new user if it does not exist yet, or you can use this endpoint to update data of the user if they already exists. You can send a extra data in user's data by using **extras** payload , such as you want to add user type, then you can put key as user_type and put your desired value.
 
 verb :
 `POST /api/v2.1/rest/login_or_register`
@@ -11,10 +11,11 @@ verb :
 request :
 
 ```bash
-user_id [string]
-password [string password, optional] # if password is provided and user exists, the user's password will be updated
-username [string]
-avatar_url [string url, optional]
+*user_id* [string]
+*password* [string password, optional] # if password is provided and user exists, the user's password will be updated
+*username* [string]
+*avatar_url* [string url, optional]
+*extras* [JSONstring, optional] or valid JSON object
 ```
 
 Note : `password` is optional, it will generate random string on the backend if you dont pass it during `User` creation through this API. However, please note for those users already created you can not use this API `login_or_register` without passing password value
@@ -27,7 +28,11 @@ response :
         "user": {
             "user_id": "user@email.com",
             "username": "Johnny Cage",
-            "avatar_url": "https://myimagebucket.com/image.jpg"
+            "avatar_url": "https://myimagebucket.com/image.jpg",
+            "extras": {
+                    "key": "value",
+                    "key1": "value1"
+            }
         },
     },
     "status": 200
